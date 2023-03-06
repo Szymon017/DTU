@@ -1,17 +1,13 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import SingleCase from "../SingleCase/SingleCase";
-
+import { useState } from "react";
+import cases from "../../testdata/cases.json"
 const MyCases = () => {
-    const cases = [{
-        "id": 1,
-        "title": "Morderstwo przy Little Seul"
-    },{
-        "id":2,
-        "title": "Porwanie funkcjonariusza"
-    }]
+    const [actualCase, setActualCase] = useState();
+    
     return (
         <>
             <Container className="defaultContainer" fluid >
@@ -19,12 +15,12 @@ const MyCases = () => {
                     <Col lg={2} className='MyCasesList'>
                         
                       {cases.map((key)=>(
-                        <Row><Col className="singleCase">{key.title}</Col></Row>
+                        <Row><Col className="singleCase" onClick={()=>{setActualCase(key)}}>{key.title}</Col></Row>
                       ))}
                     </Col>
                     
                     <Col>
-                        <SingleCase/>
+                        <SingleCase case={actualCase}/>
                     </Col>
                 </Row>
             </Container>

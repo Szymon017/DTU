@@ -1,9 +1,11 @@
 import React from "react"
-
+import { Container } from "react-bootstrap";
 const Archives = () => {
     return(
         <>
-            <h1>Archiwum</h1>
+        <Container className="defaultContainer" fluid>
+
+        </Container>
         </>
     )
 }

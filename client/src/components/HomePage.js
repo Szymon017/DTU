@@ -8,7 +8,9 @@ import Current from './Current/Current';
 const HomePage = () => {
     return(
         <>
-            <h1>Home page</h1>
+        <Container className="defaultContainer" fluid>
+
+        </Container>
         </>
     )
 }

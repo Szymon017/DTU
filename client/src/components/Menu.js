@@ -31,10 +31,10 @@ const Menu = () => {
                     </Col>
                     <Col lg={10} xs={10} className='HomeTopBarItem'>
                         <Row className='MenuItems'>
-                        <Col className='MenuItem' onClick={() => {handleClick("annoucements")}}>Ogłoszenia</Col>
-                            <Col className='MenuItem' onClick={() => {handleClick("home")}}>Aktualne sprawy</Col>
+                        <Col className='MenuItem' onClick={() => {handleClick("home")}}>Ogłoszenia</Col>
+                            <Col className='MenuItem' onClick={() => {handleClick("cases")}}>Aktualne sprawy</Col>
                             <Col className='MenuItem' onClick={() => {handleClick("crime")}}>Organizacje</Col>
-                            <Col className='MenuItem' onClick={() => {handleClick("home")}}>Informatorzy</Col>
+                            <Col className='MenuItem' onClick={() => {handleClick("informants")}}>Informatorzy</Col>
                             <Col className='MenuItem' onClick={() => {handleClick("archives")}}>Archiwum</Col>
                             <Col className="MenuItem"><Button variant='warning'>Wyloguj</Button></Col>
                         </Row>
