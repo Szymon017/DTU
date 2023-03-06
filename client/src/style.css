@@ -226,3 +226,22 @@ body {
   .RichEditor-activeButton {
     color: #5890ff;
   }
+
+  .orgMembers{
+    background-color: black;
+    margin-top: 1rem;
+    max-height: 360px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #note {
+    width: 200px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 2%;
+  }
+
+  #note h1, p{
+    color: black;
+  }

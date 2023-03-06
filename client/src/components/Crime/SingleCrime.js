@@ -3,6 +3,8 @@ import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import Button from 'react-bootstrap/esm/Button';
+import Persons from '../../testdata/persons.json'
+
 const SingleCrime = (props) => {
 
     const actual = props.actual;
@@ -43,14 +45,22 @@ const SingleCrime = (props) => {
                     <Col><Button variant="dark" onClick={() => { handleClick("vehicles") }}>Pojazdy</Button></Col>
                 </Row>
                 {option == 'members' ? (
-                    <>
-                        <h1>człokowie</h1>
-                    </>
+                  <Row className='orgMembers'>
+                        {Persons.map((key)=>(
+                            <Row >
+                                <Col style={{"margin":"20px", "font-size":"16px"}}><img src="https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png" width={150}></img> <p>{key.firstName + " " + key.lastName}</p></Col>   
+                            </Row>
+                            ))}
+                          </Row>
                 ):""}
                 {option == 'vehicles' ? (
-                    <>
-                        <h1>pojazdy</h1>
-                    </>
+                    <Row className='orgMembers'>
+                    {Persons.map((key)=>(
+                        <Row >
+                            <Col style={{"margin":"20px", "font-size":"16px"}}><img src="https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png" width={150}></img> <p>{key.firstName + " " + key.lastName}</p></Col>   
+                        </Row>
+                        ))}
+                      </Row>
                 ):""}
 
             </Container>
