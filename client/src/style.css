@@ -261,30 +261,27 @@ body {
 }
 
 .informantsPanelRow{
-  max-height: 100%;
-}
-.informatsPanel{
-  display: inline-block;
-  min-width: 50%;
-  height: 50vh;
-  overflow-y: auto;
+  height: 100%;
+  background-color: black;
 }
 
-.singlePerson{
-  background-color: black;
-  border-bottom: solid 2px white;
+.addNewPersonForm{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
 }
 
-.browser{ 
-  margin: 0.2rem;
-  background-color: black;
-  min-height: 100%;
-  width: 100%
+.addNewPersonForm input{
+  margin:0.2rem;
 }
 
-.search {
-  padding: 0.5rem;
-  background-color: black;
-  border-bottom: solid 2px white;
-  position: sticky;
+.editPersonData{
+  margin: 2rem;
+  background-color: #303030;
+  height: 66%
+
 }
+
+
+
