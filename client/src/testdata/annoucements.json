@@ -1,46 +1,17 @@
 [
     {
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
+        "title":"Ogłoszenie1",
+        "desc":"Aliquam ac rhoncus orci, vitae imperdiet massa. Curabitur tempus turpis eu velit finibus, vitae consectetur mauris commodo. Quisque egestas lorem tellus, a faucibus mi rutrum sit amet.",
+        "id":1
     },
     {
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
+        "title":"Ogłoszenie2",
+        "desc":"Aliquam ac rhoncus orci, vitae imperdiet massa. Curabitur tempus turpis eu velit finibus, vitae consectetur mauris commodo. Quisque egestas lorem tellus, a faucibus mi rutrum sit amet.",
+        "id":2
     },
     {
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
-    },
-    {
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
-    },
-    {
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
-    },{
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
-    }
-    ,{
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
-    }
-    ,{
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
-    }
-    ,{
-        "title":"Przeszukuwanie aresztowanych",
-        "desc":"Przypominam o obowiązkowym przeszukaniu osób aresztowanych i zarekwirowaniu niebezpiecznych przedmiotów! Są to dowody rzeczowe, które są kluczowe w sprawach.",
-        "author":"John Brown"
+        "title":"Ogłoszenie3",
+        "desc":"Aliquam ac rhoncus orci, vitae imperdiet massa. Curabitur tempus turpis eu velit finibus, vitae consectetur mauris commodo. Quisque egestas lorem tellus, a faucibus mi rutrum sit amet.",
+        "id":3
     }
 ]

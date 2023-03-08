@@ -1,247 +1,290 @@
 * {
-    color: white;
-    font-family: 'IBM Plex Mono', monospace;
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 body {
-    background-color: #0f131a;
+  background-color: #0f131a;
 
 }
 
 .loginContainer {
-    margin-top: 2%;
-    padding-bottom: 10%;
-    width: 30%;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
+  margin-top: 2%;
+  padding-bottom: 10%;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
 }
 
 .loginContainer h1 {
-    margin-top: 10%;
-    background-color: inherit;
-    width: 100%;
+  margin-top: 10%;
+  background-color: inherit;
+  width: 100%;
 }
 
 .loginForm form {
-    background-color: inherit;
-    display: flex;
-    flex-direction: column;
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
 }
 
 .loginForm input {
-    margin: 1rem;
-    background: transparent;
-    width: 50%;
-    border-style: none;
-    outline: none;
-    margin: auto;
-    background-color: white;
+  margin: 1rem;
+  background: transparent;
+  width: 50%;
+  border-style: none;
+  outline: none;
+  margin: auto;
+  background-color: white;
 }
 
 .loginForm input[type=submit] {
-    background-color: #303030;
-    margin: 1rem;
-    margin-left: auto;
-    margin-right: auto;
+  background-color: #303030;
+  margin: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 
 .HomeTopBar {
-    background-color: #283246;
+  background-color: #283246;
 }
 
 .HomeTopBarItem {
-    padding: 1%;
-    background-color: #171d2b;
+  padding: 1%;
+  background-color: #171d2b;
 }
 
 
 .MenuItems {
-    margin: auto;
-    margin-top: 3%;
-    text-align: center;
+  margin: auto;
+  margin-top: 3%;
+  text-align: center;
 }
 
 .MenuItem {
-    padding: 15px;
-    position: relative;
-    display: block;
-    transition-duration: 0.2s;
+  padding: 15px;
+  position: relative;
+  display: block;
+  transition-duration: 0.2s;
 }
 
 .MenuItem:hover {
-    padding-top: 10px;
-    transition-duration: 0.2s;
-    color: yellow;
+  padding-top: 10px;
+  transition-duration: 0.2s;
+  color: yellow;
 }
 
 .defaultContainer {
-    margin-top: 1rem;
-    background-color: #171d2b;
-    text-align: center;
-    min-height: 700px;
-    max-height: 700px;
+  margin-top: 1rem;
+  background-color: #171d2b;
+  text-align: center;
+  height: 700px;
+  max-height: 700px;
 }
 
 .defaultContainer h1 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
 }
 
 /* cases */
 
-.MyCasesList{
-    background-color: #171d2b;
-    overflow-y: auto;
-    min-height: 700px;
-    max-height: 700px;
+.MyCasesList {
+  background-color: #171d2b;
+  overflow-y: auto;
+  min-height: 700px;
+  max-height: 700px;
 }
 
 .singleCase {
-    font-size: 20px;
-    background-color: #2c3853;
-    margin: 1rem;
-    transition-duration: 0.5s;
+  font-size: 20px;
+  background-color: #2c3853;
+  margin: 1rem;
+  transition-duration: 0.5s;
 }
 
 .singleCase:hover {
   background-color: #48587e;
   transition-duration: 0.5s;
 }
+
 ::-webkit-scrollbar {
-    width: 1em;
-  }
-   
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-   
-  ::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
-  }
+  width: 1em;
+}
 
-  .caseMenu Button{
-    margin: 20px;
-  }
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
 
-  .cops {
-    margin: 0 1rem 0rem 1rem;
-    padding: 0.1rem;
-    background-color: grey;
-    border-radius: 5%;
-    font-size: 14px;
-  }
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
 
-  .singleCaseContainer {
-    padding: 1rem 2rem 2rem 0rem;
-  }
+.caseMenu Button {
+  margin: 20px;
+}
 
-  .singleCaseContainer h1{
-    font-size: 30px;
-  }
+.cops {
+  margin: 0 1rem 0rem 1rem;
+  padding: 0.1rem;
+  background-color: grey;
+  border-radius: 5%;
+  font-size: 14px;
+}
 
-  .textEditor { 
-    width: 100%;
-    min-height: 1rem;
-  }
+.singleCaseContainer {
+  padding: 1rem 2rem 2rem 0rem;
+}
 
-  .RichEditor-root {
-    background: #272f47;
-    border: 1px solid #000000;
-    font-family: 'Georgia', serif;
-    font-size: 14px;
-    padding: 15px;
-    min-height: inherit;
-    min-width: inherit;
-  }
-  
-  .RichEditor-editor {
-    border-top: 1px solid #d1b200;
-    cursor: text;
-    font-size: 16px;
-    margin-top: 10px;
-    height: inherit;
-    min-width: inherit;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  
-  .RichEditor-editor .public-DraftEditorPlaceholder-root,
-  .RichEditor-editor .public-DraftEditor-content {
-    margin: 0 -15px -15px;
-    padding: 15px;
-    height: inherit;
-    min-width: inherit;
-  }
-  
-  .RichEditor-editor .public-DraftEditor-content {
-    min-height: inherit;
-    min-width: inherit;
-  }
-  
-  .RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
-    display: none;
-  }
-  
-  .RichEditor-editor .RichEditor-blockquote {
-    border-left: 5px solid #eee;
-    color: #666;
-    font-family: 'Hoefler Text', 'Georgia', serif;
-    font-style: italic;
-    margin: 16px 0;
-    padding: 10px 20px;
-  }
-  
-  .RichEditor-editor .public-DraftStyleDefault-pre {
-    background-color: rgba(0, 0, 0, 0.05);
-    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
-    font-size: 16px;
-    padding: 20px;
-  }
-  
-  .RichEditor-controls {
-    font-family: 'Helvetica', sans-serif;
-    font-size: 14px;
-    margin-bottom: 5px;
-    user-select: none;
-  }
-  
-  .RichEditor-styleButton {
-    color: #ffffff;
-    cursor: pointer;
-    margin-right: 16px;
-    padding: 2px 0;
-    display: inline-block;
-  }
-  
-  .RichEditor-activeButton {
-    color: #5890ff;
-  }
+.singleCaseContainer h1 {
+  font-size: 30px;
+}
 
-  .orgMembers{
-    background-color: black;
-    margin-top: 1rem;
-    max-height: 360px;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
+.textEditor {
+  width: 100%;
+  min-height: 1rem;
+}
 
-  #note {
-    width: 200px;
-    background-color: white;
-    padding: 1rem;
-    border-radius: 2%;
-  }
+.RichEditor-root {
+  background: #272f47;
+  border: 1px solid #000000;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  padding: 15px;
+  min-height: inherit;
+  min-width: inherit;
+}
 
-  #note h1, p{
-    color: black;
-  }
+.RichEditor-editor {
+  border-top: 1px solid #d1b200;
+  cursor: text;
+  font-size: 16px;
+  margin-top: 10px;
+  height: inherit;
+  min-width: inherit;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-DraftEditor-content {
+  margin: 0 -15px -15px;
+  padding: 15px;
+  height: inherit;
+  min-width: inherit;
+}
+
+.RichEditor-editor .public-DraftEditor-content {
+  min-height: inherit;
+  min-width: inherit;
+}
+
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
+.RichEditor-editor .RichEditor-blockquote {
+  border-left: 5px solid #eee;
+  color: #666;
+  font-family: 'Hoefler Text', 'Georgia', serif;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+}
+
+.RichEditor-editor .public-DraftStyleDefault-pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+  font-size: 16px;
+  padding: 20px;
+}
+
+.RichEditor-controls {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.RichEditor-styleButton {
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+}
+
+.RichEditor-activeButton {
+  color: #5890ff;
+}
+
+.orgMembers {
+  background-color: black;
+  margin-top: 1rem;
+  max-height: 360px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.note {
+  max-width: 250px;
+  max-height: 200px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 2%;
+  display: table;
+}
+
+.note * {
+  color: black;
+  inline-size: 200px;
+  overflow: hidden;
+  display: table;
+}
+
+#pinBoard {
+  background-color: black;
+  height: 72%;
+  width: 98%;
+  overflow: auto;
+  position: absolute;
+}
+
+.informantsPanelRow{
+  max-height: 100%;
+}
+.informatsPanel{
+  display: inline-block;
+  min-width: 50%;
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.singlePerson{
+  background-color: black;
+  border-bottom: solid 2px white;
+}
+
+.browser{ 
+  margin: 0.2rem;
+  background-color: black;
+  min-height: 100%;
+  width: 100%
+}
+
+.search {
+  padding: 0.5rem;
+  background-color: black;
+  border-bottom: solid 2px white;
+  position: sticky;
+}

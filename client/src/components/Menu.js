@@ -34,7 +34,7 @@ const Menu = () => {
                         <Col className='MenuItem' onClick={() => {handleClick("home")}}>Ogłoszenia</Col>
                             <Col className='MenuItem' onClick={() => {handleClick("cases")}}>Aktualne sprawy</Col>
                             <Col className='MenuItem' onClick={() => {handleClick("crime")}}>Organizacje</Col>
-                            <Col className='MenuItem' onClick={() => {handleClick("informants")}}>Informatorzy</Col>
+                            <Col className='MenuItem' onClick={() => {handleClick("persons")}}>Osoby</Col>
                             <Col className='MenuItem' onClick={() => {handleClick("archives")}}>Archiwum</Col>
                             <Col className="MenuItem"><Button variant='warning'>Wyloguj</Button></Col>
                         </Row>

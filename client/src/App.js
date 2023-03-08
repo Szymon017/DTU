@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/esm/Container.js';
 import MyCases from '../src/components/MyCases/MyCases'
 import Crime from './components/Crime/Crime.js';
 import Archives from './components/Archives/Archives.js';
-import Informants from './components/Informants/Informants.js';
+import Persons from './components/Persons/Persons.js';
 function App() {
   return (
     <>
@@ -22,10 +22,9 @@ function App() {
               <Route path='/cases' element={<MyCases />}></Route>
               <Route path='/crime' element={<Crime />}></Route>
               <Route path='/archives' element={<Archives/>}></Route>
-              <Route path='/informants' element={<Informants/>}></Route>
+              <Route path='/persons' element={<Persons/>}></Route>
             </Routes>
           </BrowserRouter>
-          <footer style={{'text-align':'center'}}>&copy; Detective Task Unit</footer>
     </>
   );
 }
