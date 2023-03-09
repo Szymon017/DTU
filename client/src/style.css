@@ -283,5 +283,19 @@ body {
 
 }
 
+.personsMiniMenuItem{
+  background-color: #070c1b;
+  padding: 0.2rem;
+  margin: 1rem;
+  width: 20px;
+}
 
+.personsMiniMenuItem:hover{
+  background-color: #04060e;
 
+}
+
+.personDescription {
+  background-color: #000000;
+  min-height: 100%;
+}

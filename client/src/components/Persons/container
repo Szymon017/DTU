@@ -1,0 +1,44 @@
+ <form>
+                                            <label for="exampleInputEmail1">Imię</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Imię" />
+                                            <label for="exampleInputEmail1">Nazwisko</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Imię" />
+                                            <label for="exampleInputEmail1">Numer dowodu</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Imię" />
+                                            <label for="exampleInputEmail1">Numer telefonu</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Imię" />
+                                            <label for="exampleInputEmail1">Adres e-mail</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Imię" />
+                                            <Button variant='dark'>Dodaj nową osobę</Button>
+                                        </form>
+
+                                         <Col>
+                                    <JoditEditor
+                                        ref={editor}
+                                        value={savedContent}
+                                        config={config}
+                                        onChange={newContent => setContent(newContent)} />
+                                </Col>
+
+
+
+                                <Row>
+                            <Col style={{ "padding": "0.5rem" }}><img src="https://wallpapers.com/images/featured/hd-a5u9zq0a0ymy2dug.jpg" width="200px" /></Col>
+                            <Col style={{ 'textAlign': 'left', "padding": "0.5rem" }}>
+                                <Row>
+                                    <Col>Imie</Col><Col>John</Col>
+                                </Row><Row>
+                                    <Col>Nazwisko</Col><Col>Brown</Col>
+                                </Row><Row>
+                                    <Col>Numer dowodu</Col><Col>XD-0000</Col>
+                                </Row><Row>
+                                    <Col>Numer telefonu</Col><Col>12345</Col>
+                                </Row>
+                                <Row>
+                                    <Col>Adres e-mail</Col><Col>j.brown@gmail.com</Col>
+                                </Row>
+                                <Row>
+                                    <Col>Aktualne sprawy</Col>
+                                </Row>
+                            </Col>
+                        </Row>
