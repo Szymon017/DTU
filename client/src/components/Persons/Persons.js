@@ -14,6 +14,7 @@ const Persons = () => {
     const editor = useRef(null);
     const [content, setContent] = useState('');
     const [savedContent, setSavedContent] = useState('')
+    const [newPersonForm, setNewPersonForm] = useState(false)
 
     const handleChange = (con) => {
         setContent(con)
@@ -33,106 +34,17 @@ const Persons = () => {
             <Container className="defaultContainer" fluid>
                 <Row className='informantsPanelRow'>
                     <Col style={{ "height": "100%", "borderRight": "1px solid white" }}>
-                        <Row style={{ "padding": "0.5rem", "borderBottom": "1px solid white" }}><Col><input type="text" /></Col><Col><Button variant="dark">Wyszukaj</Button></Col><Col><Button variant="warning">Informatorzy</Button></Col></Row>
+                        <Row style={{ "padding": "0.5rem", "borderBottom": "1px solid white" }}><Col><input type="text" /></Col><Col><Button variant="dark">Wyszukaj</Button></Col><Col><Button variant="warning">Informatorzy</Button></Col><Col><Button variant="warning" onClick={()=>{setNewPersonForm(!newPersonForm)}}>Dodaj</Button></Col></Row>
                         <Row style={{ "height": "90%", "overflow-y": "auto" }}>
                             <Col>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row><Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
+                            {newPersonForm?(
+                                <Row><Col>XD</Col></Row>
+                            ):(
 
+                                <Row>
+                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
+                                </Row>
+                                    )}
                             </Col>
                         </Row>
                     </Col>
