@@ -20,3 +20,11 @@ export const getCurrentOfficer = () => {
         }
     }
 }
+
+export const getAllOfficers = async() => {
+    try {
+        return await axios.get('http://localhost:5000/officer')
+    } catch (err) {
+        return err
+    }
+}

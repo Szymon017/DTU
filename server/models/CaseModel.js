@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Officer from "./OfficerModel.js";
 
 const CaseSchema = mongoose.Schema({
     title: {
@@ -7,17 +8,19 @@ const CaseSchema = mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        default: "Tutaj wpisz treść raportu"
     },
-    author: {
+    officers: [{
         type: mongoose.Schema.Types.ObjectId,
+        ref: Officer,
         required: true
-    },
+    }],
     date: {
         type: Date,
         default: Date.now()
     }
 })
 
-const Case = mongoose.Model("Case", CaseSchema)
+const Case = mongoose.model("Case", CaseSchema)
 export default Case;
