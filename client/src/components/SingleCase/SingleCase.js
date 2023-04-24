@@ -14,6 +14,7 @@ const SingleCase = (props) => {
     const [click, setClick] = useState(false);
     const editor = useRef(null);
     const [content, setContent] = useState();
+    const [addOfficer, setAddOfficer ] = useState(false);
     
     const handleChange = (con) => {
         setContent(con)
@@ -62,12 +63,20 @@ const SingleCase = (props) => {
                                 <label className='cops'>{value.firstName + " " + value.lastName}</label>
                             ))
                         }
-                            <Button variant="warning">+</Button>
+                            
+                            {addOfficer?(
+                                <Row>
+                                    <Col>
+                                    <input type="text" style={{"margin":"1rem"}}></input>
+                                    <Button variant="dark" onClick={()=>{setAddOfficer(!addOfficer)}}>+</Button>
+                                    </Col>
+                                </Row>
+                            ):(<Button variant="dark" onClick={()=>{setAddOfficer(!addOfficer)}}>+</Button>)}
                         </Col>
                     </Row>
 
                     <Row>
-                        <Col className='caseMenu'><Button variant='dark'>Opis</Button><Button variant='dark'>Dowody</Button><Button variant='dark'>TODO</Button><Button variant='dark'>Notatki</Button></Col>
+                        <Col className='caseMenu'><Button variant='dark'>Notatka</Button><Button variant='dark'>Dowody</Button><Button variant='dark'>Osoby powiązane</Button></Col>
                     </Row>
                 </div>
                 {click ? <><Button onClick={() => { handleClick() }} variant="secondary m-1">Podgląd</Button><Button onClick={() => { handleSubmit() }} variant="secondary m-1">Zapisz</Button></> : <Button variant="dark m-1" onClick={() => { handleClick() }}>Edytuj</Button>}

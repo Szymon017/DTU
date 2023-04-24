@@ -70,7 +70,7 @@ const MyCases = () => {
                             </Col></Row>
                         ))}
                     </Col>
-                    {caseForm ? (
+                    {caseForm && actualCase? (
 
                         <Col>
                             <SingleCase case={actualCase} />

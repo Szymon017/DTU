@@ -66,7 +66,8 @@ OfficerSchema.statics.signUp = async (firstName, lastName, login, password, phon
         login,
         password: hashed_password,
         phone,
-        grade
+        grade: 1, 
+        role: 1
     });
 
     return newOfficer;

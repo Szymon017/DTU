@@ -9,6 +9,8 @@ import MyCases from '../src/components/MyCases/MyCases'
 import Crime from './components/Crime/Crime.js';
 import Archives from './components/Archives/Archives.js';
 import Persons from './components/Persons/Persons.js';
+import Office from './components/Office/Office.js';
+
 function App() {
   return (
     <>
@@ -23,6 +25,7 @@ function App() {
               <Route path='/crime' element={<Crime />}></Route>
               <Route path='/archives' element={<Archives/>}></Route>
               <Route path='/persons' element={<Persons/>}></Route>
+              <Route path='/office' element={<Office/>}></Route>
             </Routes>
           </BrowserRouter>
     </>
