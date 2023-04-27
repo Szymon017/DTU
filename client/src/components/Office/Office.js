@@ -3,9 +3,11 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Form from "react-bootstrap/esm/Form";
-import { addNewOfficer } from "../../Services/OfficerService";
+import { addNewOfficer, getAllOfficers } from "../../Services/OfficerService";
 const Office = () => {
   const [newOfficer, setNewOfficer] = useState();
+  const [allOfficers, setAllOfficers] = useState();
+  const [actualOfficer, setActualOfficer] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,12 +18,27 @@ const Office = () => {
     console.log(newOfficer);
   };
 
-  const handleClick = async(e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     const result = await addNewOfficer(newOfficer);
     console.log(result);
     setNewOfficer(null)
   }
+
+  const getOfficers = async () => {
+    const result = await getAllOfficers();
+    console.log(result);
+    setAllOfficers(result.data.results)
+  }
+
+  const actualOfficerHandler = (officer) => {
+    setActualOfficer(officer)
+
+  }
+
+  useEffect(() => {
+    getOfficers()
+  }, []);
 
   return (
     <>
@@ -31,13 +48,12 @@ const Office = () => {
             <h1>Biuro</h1>
           </Col>
         </Row>
-        <Row>
+        <Row style={{ "height": "100%" }}>
           <Col>
-            Rejestracja nowego detektywa
-            <Row>
-              <Col className="officerRegisterForm">
-                {" "}
-                <form>
+          Rejestracja nowego detektywa
+            <Row style={{ "height":"80%" }}>
+              <Col className="officeSinglePanel">
+                 <form>
                   <p>Imię</p>
                   <input
                     type="text"
@@ -72,12 +88,43 @@ const Office = () => {
                   <input type="text" name="avatar" onChange={handleChange} />
                   <p className="text-danger"></p>
                   <input type="submit" onClick={handleClick} value="Dodaj" />
-                </form>
+                </form> 
+              </Col>
+              <Col className="officeSinglePanel">
+                {actualOfficer?(
+                  <Row>
+                    <Col>
+                  <Row><Col><img src={actualOfficer.avatar} width={"120px"} height={"120px"}/></Col></Row>
+                  <Row><Col>{actualOfficer.firstName}</Col></Row>
+                  <Row><Col>{actualOfficer.lastName}</Col></Row>
+                  <Row><Col>{actualOfficer.phone}</Col></Row>
+                  <Row><Col>{actualOfficer.grade}</Col></Row>
+                    </Col>
+                  </Row>
+                  
+                ):("s")}
               </Col>
             </Row>
           </Col>
-          <Col>Spis detektywów</Col>
+          <Col style={{"height":"100%"}}>
+            Spis detektywów
+            <Row style={{"height":"80%" }}>
+              <Col className="officeSinglePanel" style={{"overflowY":"scroll"}}>
+                 {
+                  allOfficers?.map((value) => (
+                    <Row className="singleOfficer" onClick={()=>{actualOfficerHandler(value)}}>
+                      <Col><img src={value.avatar} width={"90px"} /></Col>
+                      <Col>{value.firstName}</Col>
+                      <Col>{value.lastName}</Col>
+                    </Row>
+                  ))
+                }
+              </Col>
+
+            </Row>
+          </Col>
         </Row>
+
       </Container>
     </>
   );

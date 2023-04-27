@@ -23,7 +23,7 @@ export const getCurrentOfficer = () => {
 
 export const getAllOfficers = async() => {
     try {
-        return await axios.get('http://localhost:5000/officers')
+        return await axios.get('http://localhost:5000/officers/all')
     } catch (err) {
         return err
     }

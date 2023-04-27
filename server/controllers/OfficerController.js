@@ -53,7 +53,7 @@ const login = async (req, res) => {
 }
 const getAllOfficers = async (req, res) => {
     try {
-        const result = await Officer.find({}).select({"_id":1, "firstName":1, "lastName":1})
+        const result = await Officer.find({}).select({"_id":1, "firstName":1, "lastName":1, "avatar":1, "phone":1, "grade":1})
         res.status(200).json({
             message: "success",
             results: result
