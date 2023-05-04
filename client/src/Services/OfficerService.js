@@ -37,3 +37,11 @@ export const addNewOfficer = async(data) => {
         return error
     }
 }
+
+export const deleteOfficer = async(id) => {
+    try {
+        return await axios.delete(`http://localhost:5000/officers/${id}`)
+    } catch (error) {
+        return error
+    }
+}

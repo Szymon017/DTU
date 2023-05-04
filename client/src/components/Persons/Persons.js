@@ -1,9 +1,10 @@
 import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import { Row, Col, Button } from "react-bootstrap"
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import '../../style.css'
+import { addNewPerson, getAllPersons } from "../../Services/PersonService.js"
 const Persons = () => {
     const [register, setRegister] = useState(false)
     const [personActive, setPersonActive] = useState(false)
@@ -15,10 +16,29 @@ const Persons = () => {
     const [content, setContent] = useState('');
     const [savedContent, setSavedContent] = useState('')
     const [newPersonForm, setNewPersonForm] = useState(false)
+    const [newPerson, setNewPerson] = useState()
+    const [allPersons, setAllPersons] = useState();
+    const [actualPeson, setActalPerson] = useState();
 
     const handleChange = (con) => {
         setContent(con)
     }
+
+    const handleChangeForm = (e) => {
+        const { name, value } = e.target;
+        setNewPerson({
+            ...newPerson,
+            [name]: value,
+        });
+        console.log(newPerson);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const result = await addNewPerson(newPerson)
+        console.log(result);
+    }
+
     const config = useMemo(() => ({
         readonly: false,
         theme: "dark",
@@ -28,23 +48,80 @@ const Persons = () => {
         colorPickerDefaultTab: 'color',
     }), [])
 
+    const getPersons = async () => {
+        const result = await getAllPersons();
+        console.log(result);
+        setAllPersons(result.data.results)
+    }
+
+    useEffect(() => {
+        getPersons()
+    }, []);
 
     return (
         <>
             <Container className="defaultContainer" fluid>
                 <Row className='informantsPanelRow'>
                     <Col style={{ "height": "100%", "borderRight": "1px solid white" }}>
-                        <Row style={{ "padding": "0.5rem", "borderBottom": "1px solid white" }}><Col><input type="text" /></Col><Col><Button variant="dark">Wyszukaj</Button></Col><Col><Button variant="warning">Informatorzy</Button></Col><Col><Button variant="warning" onClick={()=>{setNewPersonForm(!newPersonForm)}}>Dodaj</Button></Col></Row>
+                        <Row style={{ "padding": "0.5rem", "borderBottom": "1px solid white" }}><Col><input type="text" /></Col><Col><Button variant="dark">Wyszukaj</Button></Col><Col><Button variant="warning">Informatorzy</Button></Col><Col><Button variant="warning" onClick={() => { setNewPersonForm(!newPersonForm) }}>Dodaj</Button></Col></Row>
                         <Row style={{ "height": "90%", "overflow-y": "auto" }}>
                             <Col>
-                            {newPersonForm?(
-                                <Row><Col>XD</Col></Row>
-                            ):(
+                                {newPersonForm ? (
+                                    <Row className="newPersonForm">
+                                        <Col className="officeSinglePanel">
+                                            <form>
+                                                <p>Imię</p>
+                                                <input
+                                                    type="text"
+                                                    name="firstName"
+                                                    onChange={handleChangeForm}
+                                                    required
+                                                />
+                                                <p>Nazwisko</p>
+                                                <input
+                                                    type="text"
+                                                    name="lastName"
+                                                    onChange={handleChangeForm}
+                                                    required
+                                                />
+                                                <p>Numer dowodu</p>
+                                                <input
+                                                    type="text"
+                                                    name="id"
+                                                    onChange={handleChangeForm}
+                                                    required
+                                                />
+                                                <p>Numer telefonu</p>
+                                                <input
+                                                    type="text"
+                                                    name="number"
+                                                    onChange={handleChangeForm}
+                                                    required
+                                                />
+                                                <p>Adres email</p>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    onChange={handleChangeForm}
+                                                    required
+                                                />
+                                                <p className="text-danger"></p>
+                                                <input type="submit" onClick={handleSubmit} value="Dodaj" />
+                                            </form>
+                                        </Col>
+                                    </Row>
+                                ) : (
 
-                                <Row>
-                                    <Col>John</Col><Col>Brown</Col><Col><u>Szczegóły</u></Col>
-                                </Row>
-                                    )}
+                                    <Row>
+                                        <Col>
+                                            {
+                                                allPersons?.map((value) => (
+                                                    <Row className="singlePerson" onClick={()=>{setActalPerson(value)}}><Col>{value.firstName}</Col><Col>{value.lastName}</Col></Row>
+                                                ))
+                                            }
+                                        </Col>
+                                    </Row>
+                                )}
                             </Col>
                         </Row>
                     </Col>
@@ -60,17 +137,18 @@ const Persons = () => {
                                     <Row>
                                         <Col style={{ "padding": "0.5rem ", "background-color": "black" }}><img src="https://wallpapers.com/images/featured/hd-a5u9zq0a0ymy2dug.jpg" width="200px" /></Col>
                                         <Col style={{ 'textAlign': 'left', "padding": "0.5rem", "background-color": "black" }}>
+                                            
                                             <Row>
-                                                <Col>Imie</Col><Col>John</Col>
+                                                <Col>Imie</Col><Col>{actualPeson?.firstName}</Col>
                                             </Row><Row>
-                                                <Col>Nazwisko</Col><Col>Brown</Col>
+                                                <Col>Nazwisko</Col><Col>{actualPeson?.lastName}</Col>
                                             </Row><Row>
-                                                <Col>Numer dowodu</Col><Col>XD-0000</Col>
+                                                <Col>Numer dowodu</Col><Col>{actualPeson?.id}</Col>
                                             </Row><Row>
-                                                <Col>Numer telefonu</Col><Col>12345</Col>
+                                                <Col>Numer telefonu</Col><Col>{actualPeson?.phone}</Col>
                                             </Row>
                                             <Row>
-                                                <Col>Adres e-mail</Col><Col>j.brown@gmail.com</Col>
+                                                <Col>Adres e-mail</Col><Col>{actualPeson?.email}</Col>
                                             </Row>
 
                                         </Col>
@@ -105,19 +183,19 @@ const Persons = () => {
                                             <Row style={{ "height": "75%" }}>
                                                 <Col className="personDescription">
                                                     {editPersonData ? (
-                                                            <>
-                                                                 <JoditEditor
-                                        ref={editor}
-                                        value={content}
-                                        config={config}
-                                        onChange={newContent => setContent(newContent)} />
-                                                            </>
+                                                        <>
+                                                            <JoditEditor
+                                                                ref={editor}
+                                                                value={content}
+                                                                config={config}
+                                                                onChange={newContent => setContent(newContent)} />
+                                                        </>
                                                     ) : (<>
                                                         {
-                                                            desc?(<div dangerouslySetInnerHTML={{ __html: content }} />):""
+                                                            desc ? (<div dangerouslySetInnerHTML={{ __html: content }} />) : ""
                                                         }
                                                     </>)}
-                                                    
+
                                                 </Col>
                                             </Row>
 
@@ -135,37 +213,8 @@ const Persons = () => {
             </Container>
         </>
     )
-    /*
- 
-<Row className='singleInformantMenu'>
-<Col>Imie</Col>
-<Col>Nazwisko</Col>
-<Col>Numer</Col>
-<Col>E-mail</Col>
-<Col>Powiązane sprawy</Col>
-<Col>Numer dowodu</Col>
-</Row>
-<Row className='informantsTable' style={{"overflow-y":"auto", "maxHeight":"620px"}}>
-<Col>
- 
-<Row className='singleInformant'>
-<Col>John</Col>
-<Col>Brown</Col>
-<Col>12312</Col>
-<Col>johnbrown@gmail.com</Col>
-<Col><u>link</u></Col>
-<Col>XD-6969</Col>
-</Row>
-<Row className='singleInformant'>
-<Col>John</Col>
-<Col>Brown</Col>
-<Col>12312</Col>
-<Col>johnbrown@gmail.com</Col>
-<Col><u>link</u></Col>
-<Col>XD-6969</Col>
-</Row>
- 
-*/
+
+
 }
 
 export default Persons;

@@ -1,5 +1,5 @@
 import express from "express";
-import { register, login, getAllOfficers } from "../controllers/OfficerController.js";
+import { register, login, getAllOfficers, deleteOfficer } from "../controllers/OfficerController.js";
 const router = express.Router();
 
 
@@ -7,7 +7,7 @@ router.get('/')
 router.get('/all',getAllOfficers)
 router.post('/', register)
 router.post('/login', login)
-router.delete('/')
+router.delete('/:id',deleteOfficer)
 router.put('/')
 
 export default router;

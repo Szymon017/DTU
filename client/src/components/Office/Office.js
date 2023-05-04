@@ -3,7 +3,9 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Form from "react-bootstrap/esm/Form";
-import { addNewOfficer, getAllOfficers } from "../../Services/OfficerService";
+import { addNewOfficer, getAllOfficers, deleteOfficer } from "../../Services/OfficerService";
+import { Button } from 'react-bootstrap';
+
 const Office = () => {
   const [newOfficer, setNewOfficer] = useState();
   const [allOfficers, setAllOfficers] = useState();
@@ -15,7 +17,6 @@ const Office = () => {
       ...newOfficer,
       [name]: value,
     });
-    console.log(newOfficer);
   };
 
   const handleClick = async (e) => {
@@ -23,6 +24,11 @@ const Office = () => {
     const result = await addNewOfficer(newOfficer);
     console.log(result);
     setNewOfficer(null)
+  }
+
+  const handleDeleteOfficer = async(id) => {
+    const result = await deleteOfficer(id)
+    console.log(result);
   }
 
   const getOfficers = async () => {
@@ -98,7 +104,8 @@ const Office = () => {
                   <Row><Col>{actualOfficer.firstName}</Col></Row>
                   <Row><Col>{actualOfficer.lastName}</Col></Row>
                   <Row><Col>{actualOfficer.phone}</Col></Row>
-                  <Row><Col>{actualOfficer.grade}</Col></Row>
+                  <Row><Col>Detective {actualOfficer.grade}</Col></Row>
+                  <Row><Col><Button onClick={()=>{handleDeleteOfficer(actualOfficer._id)}} variant='danger'>Usuń funkcjonariusza</Button></Col></Row>
                     </Col>
                   </Row>
                   

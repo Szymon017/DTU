@@ -359,3 +359,12 @@ body {
   background-color: #222222;
 }
 
+.newPersonForm{
+  min-height: 100%;
+  padding: 4rem;
+}
+
+.singlePerson:hover{
+  background-color: #171b27;
+  cursor: pointer;
+}

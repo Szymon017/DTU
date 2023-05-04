@@ -65,9 +65,23 @@ const getAllOfficers = async (req, res) => {
     }
 }
 
+const deleteOfficer = async(req,res) => {
+    try {
+        const result = await Officer.findByIdAndDelete({ _id: req.params.id});
+        res.status(200).json({
+            message: "Succesfully deleted an officer"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
 
 export {
     register,
     login,
-    getAllOfficers
+    getAllOfficers,
+    deleteOfficer
 }
