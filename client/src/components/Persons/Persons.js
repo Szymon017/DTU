@@ -4,7 +4,7 @@ import { Row, Col, Button } from "react-bootstrap"
 import { useState, useRef, useMemo, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import '../../style.css'
-import { addNewPerson, getAllPersons } from "../../Services/PersonService.js"
+import { addNewPerson, getAllPersons, updatePerson } from "../../Services/PersonService.js"
 const Persons = () => {
     const [register, setRegister] = useState(false)
     const [personActive, setPersonActive] = useState(false)
@@ -14,11 +14,10 @@ const Persons = () => {
     const [editPersonData, setEditPersonData] = useState(false)
     const editor = useRef(null);
     const [content, setContent] = useState('');
-    const [savedContent, setSavedContent] = useState('')
     const [newPersonForm, setNewPersonForm] = useState(false)
     const [newPerson, setNewPerson] = useState()
     const [allPersons, setAllPersons] = useState();
-    const [actualPeson, setActalPerson] = useState();
+    const [actualPerson, setActalPerson] = useState();
 
     const handleChange = (con) => {
         setContent(con)
@@ -54,15 +53,28 @@ const Persons = () => {
         setAllPersons(result.data.results)
     }
 
+    const handleUpdate = async() => {
+        console.log(content);
+        const result = await updatePerson(actualPerson._id, {description: content})
+        console.log(result);
+    }
+
     useEffect(() => {
         getPersons()
     }, []);
+
+    useEffect(() => {
+        if(actualPerson){
+            console.log(actualPerson.description);
+            setContent(actualPerson.description)
+        }
+    }, [actualPerson])
 
     return (
         <>
             <Container className="defaultContainer" fluid>
                 <Row className='informantsPanelRow'>
-                    <Col style={{ "height": "100%", "borderRight": "1px solid white" }}>
+                    <Col  style={{ "height": "100%", "borderRight": "1px solid white" }}>
                         <Row style={{ "padding": "0.5rem", "borderBottom": "1px solid white" }}><Col><input type="text" /></Col><Col><Button variant="dark">Wyszukaj</Button></Col><Col><Button variant="warning">Informatorzy</Button></Col><Col><Button variant="warning" onClick={() => { setNewPersonForm(!newPersonForm) }}>Dodaj</Button></Col></Row>
                         <Row style={{ "height": "90%", "overflow-y": "auto" }}>
                             <Col>
@@ -94,7 +106,7 @@ const Persons = () => {
                                                 <p>Numer telefonu</p>
                                                 <input
                                                     type="text"
-                                                    name="number"
+                                                    name="phone"
                                                     onChange={handleChangeForm}
                                                     required
                                                 />
@@ -102,6 +114,13 @@ const Persons = () => {
                                                 <input
                                                     type="email"
                                                     name="email"
+                                                    onChange={handleChangeForm}
+                                                    required
+                                                />
+                                                <p>Zdjęcie</p>
+                                                <input
+                                                    type="text"
+                                                    name="avatar"
                                                     onChange={handleChangeForm}
                                                     required
                                                 />
@@ -135,20 +154,20 @@ const Persons = () => {
                             <Row style={{ "height": "100%" }}>
                                 <Col style={{ "height": "100%" }}>
                                     <Row>
-                                        <Col style={{ "padding": "0.5rem ", "background-color": "black" }}><img src="https://wallpapers.com/images/featured/hd-a5u9zq0a0ymy2dug.jpg" width="200px" /></Col>
+                                        <Col style={{ "padding": "0.5rem ", "background-color": "black" }}><img src={actualPerson?.avatar} width="200px" /></Col>
                                         <Col style={{ 'textAlign': 'left', "padding": "0.5rem", "background-color": "black" }}>
                                             
                                             <Row>
-                                                <Col>Imie</Col><Col>{actualPeson?.firstName}</Col>
+                                                <Col>Imie</Col><Col>{actualPerson?.firstName}</Col>
                                             </Row><Row>
-                                                <Col>Nazwisko</Col><Col>{actualPeson?.lastName}</Col>
+                                                <Col>Nazwisko</Col><Col>{actualPerson?.lastName}</Col>
                                             </Row><Row>
-                                                <Col>Numer dowodu</Col><Col>{actualPeson?.id}</Col>
+                                                <Col>Numer dowodu</Col><Col>{actualPerson?.id}</Col>
                                             </Row><Row>
-                                                <Col>Numer telefonu</Col><Col>{actualPeson?.phone}</Col>
+                                                <Col>Numer telefonu</Col><Col>{actualPerson?.phone}</Col>
                                             </Row>
                                             <Row>
-                                                <Col>Adres e-mail</Col><Col>{actualPeson?.email}</Col>
+                                                <Col>Adres e-mail</Col><Col>{actualPerson?.email}</Col>
                                             </Row>
 
                                         </Col>
@@ -172,7 +191,7 @@ const Persons = () => {
                                             ) : ""
                                             }{editPersonData ? (
                                                 <>
-                                                    <Row><Col className="personsMiniMenuItem" onClick={() => { setEditPersonData(false); setCases(true); setVehicles(true); setDesc(true) }}>Zapisz</Col></Row>
+                                                    <Row><Col className="personsMiniMenuItem" onClick={() => { setEditPersonData(false); setCases(true); setVehicles(true); setDesc(true); handleUpdate()}}>Zapisz</Col></Row>
                                                     <Row><Col className="personsMiniMenuItem" onClick={() => { setEditPersonData(false); setCases(true); setVehicles(true); setDesc(true) }}>Anuluj</Col></Row>
                                                 </>
                                             ) : ("")

@@ -14,55 +14,86 @@ const SingleCrime = (props) => {
         console.log(value);
         setOption(value);
     })
+
+
     return (
         <>
-            <Container>
-                <Row>
-                    <Col lg={3} style={{"padding":"2rem"}}>
-                        <img src="https://images.ctfassets.net/wn7ipiv9ue5v/12DuxreGBglXo7rzMve1BO/a283c977b65de739f657002aa90cc6fe/GTAIV_DETAILSHOTS_0004_GTAIV_Tshirt_AngelsDeathBlk_Front_01.jpg" width={200}></img>
-                    </Col>
-                    <Col lg={9} style={{"text-align":"left", "padding-top":"2rem"}}>
-                        <h1 style={{ 'font-size': '27px' }}><b>{actual}</b></h1>
-                        <p>Stopień zagrożenia V</p>
-                        <Row>
-                            <Col lg={2}>Lider grupy</Col>
-                            <Col>John Brown</Col>
-                        </Row>
-                        <Row>
-                            <Col lg={2}>Kolorystyka</Col>
-                            <Col>Czarny, Czerwony</Col>
-                        </Row>
-                        <Row>
-                            <Col lg={2}>Kategoria</Col>
-                            <Col>Narkotyki, porwania</Col>
-                        </Row>
-                    </Col>
-                </Row>
-                <Row>
-                </Row>
-                <Row>
-                    <Col><Button variant="dark" onClick={() => { handleClick("members") }}>Członkowie</Button></Col>
-                    <Col><Button variant="dark" onClick={() => { handleClick("vehicles") }}>Pojazdy</Button></Col>
-                </Row>
-                {option == 'members' ? (
-                  <Row className='orgMembers'>
-                        {Persons.map((key)=>(
-                            <Row >
-                                <Col style={{"margin":"20px", "font-size":"16px"}}><img src="https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png" width={150}></img> <p>{key.firstName + " " + key.lastName}</p></Col>   
-                            </Row>
-                            ))}
-                          </Row>
-                ):""}
-                {option == 'vehicles' ? (
-                    <Row className='orgMembers'>
-                    {Persons.map((key)=>(
-                        <Row >
-                            <Col style={{"margin":"20px", "font-size":"16px"}}><img src="https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png" width={150}></img> <p>{key.firstName + " " + key.lastName}</p></Col>   
-                        </Row>
-                        ))}
-                      </Row>
-                ):""}
+            <Container fluid className="crimeContainer" >
+                <Row style={{ "height": "50%" }}>
+                    <Col className="crimeTile1 crimeTiles">
+                        <img src={actual?.photo} />
+                        <p></p>
+                        <h1><b>{actual?.name}</b></h1>
+                        <i class="bi bi-droplet-fill" style={{ "color": "red" }}></i>
+                        <i class="bi bi-droplet-fill" style={{ "color": "red" }}></i>
+                        <i class="bi bi-droplet-fill" style={{ "color": "red" }}></i>
+                        <i class="bi bi-droplet-fill" style={{ "color": "black" }}></i>
+                        <i class="bi bi-droplet-fill" style={{ "color": "black" }}></i>
 
+                    </Col>
+                    <Col className="crimeTile2 crimeTiles">
+                        <Row style={{ "height": "20%" }}>
+                            <Col>
+                                <Button variant='dark'>Członkowie</Button>
+                                <Button variant='dark'>Pojazdy</Button>
+                            </Col>
+                        </Row>
+                        <Row style={{ "height": "80%" }}>
+                            <Col className="crimeMembersTable">
+                                <Row style={{ "height": "100%" }}>
+                                    <Col style={{ "height": "100%" }}>
+                                        <Row className="crimeMembersTableHeader">
+                                            <Col>Imię</Col>
+                                            <Col>Nazwisko</Col>
+                                            <Col>Pozycja</Col>
+                                        </Row>
+                                        <Row className="crimeMembers">
+                                            <Col>
+                                                {actual?.members.map((key) => (
+                                                    <Row className="crimeMembersSinglePerson">
+                                                        <Col>{key.firstName}</Col>
+                                                        <Col>{key.lastName}</Col>
+                                                        <Col>member</Col>
+                                                    </Row>
+                                                ))}
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                    <Col style={{ "height": "100%" }}>
+                                        <Row style={{ "height": "50%" }}>
+                                            <Col><img src={actual?.photo} height="150px"></img></Col>
+                                            <Col>1</Col>
+                                        </Row>
+                                        <Row style={{ "height": "50%" }}>
+                                            <Col>1</Col>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row style={{ "height": "50%" }}>
+                    <Col className="crimeTile3 crimeTiles">
+                        <Row style={{ "borderBottom": "dotted 3px white", "paddingBottom": "1.5rem" }}>
+                            <Col><h1>Powiązane sprawy</h1></Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        {actual?.cases.map((key) => (
+                                            <Row className="crimeSingleCase "><Col>{key.title}</Col></Row>
+                                        ))}
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Col>
+
+                    <Col className="crimeTile4 crimeTiles">
+                    </Col>
+                </Row>
             </Container>
         </>
     )

@@ -15,11 +15,23 @@ const PersonSchema = mongoose.Schema({
     },
     phone: {
         type: String,
-        required: false
+        required: false,
+        default: ""
     },
     email: {
         type: String,
-        required: false
+        required: false,
+        default: ""
+    },
+    avatar: {
+        type: String, 
+        required: false,
+        default: ""
+    },
+    description: {
+        type: String,
+        required: false,
+        default: ""
     }
 })
 

@@ -1,16 +1,16 @@
 import Person from "../models/Person.js";
 
 const addNewPerson = async (req, res) => {
-    const { firstName, lastName, id, phone, email } = req.body;
-    console.log("XDD");
+    const { firstName, lastName, id, phone, email, avatar } = req.body;
     try {
-        
+
         const newPerson = await Person.create({
             firstName,
             lastName,
             id,
             phone,
-            email
+            email,
+            avatar
         });
         res.status(200).json({
             message: "success",
@@ -23,7 +23,29 @@ const addNewPerson = async (req, res) => {
     }
 }
 
-const getAllPersons = async(req, res) => {
+const updatePerson = async (req, res) => {
+    console.log("Updating person" + req.body.params);
+    try {
+        const newPerson = await Person.findByIdAndUpdate(req.params.id, req.body, {
+            new: true
+        })
+        if (!newPerson) {
+            throw Error("No person found!")
+        }
+        res.status(200).json({
+            status: "Successfully updated a person",
+            data: newPerson
+        })
+    } catch (error) {
+        res.status(200).json({
+            status: "Failed to update a person",
+            error: error.message
+        })
+    }
+
+}
+
+const getAllPersons = async (req, res) => {
     try {
         const result = await Person.find({})
         res.status(200).json({
@@ -39,5 +61,6 @@ const getAllPersons = async(req, res) => {
 
 export {
     addNewPerson,
-    getAllPersons
+    getAllPersons,
+    updatePerson
 }

@@ -19,7 +19,7 @@ const OfficerSchema = mongoose.Schema({
         required: true
     },
     phone: {
-        type: Number,
+        type: String,
         required: true
     },
     grade: {
@@ -50,8 +50,8 @@ OfficerSchema.statics.login = async function (email, password) {
 
 };
 
-OfficerSchema.statics.signUp = async (firstName, lastName, login, password, phone, grade) => {
-
+OfficerSchema.statics.signUp = async (firstName, lastName, login, password, phone, grade,avatar) => {
+    console.log("XDD"+avatar);
 
     if (!firstName, !lastName, !login, !password, !phone, !grade) {
         throw Error('Pola nie mogą być puste!');
@@ -67,7 +67,8 @@ OfficerSchema.statics.signUp = async (firstName, lastName, login, password, phon
         password: hashed_password,
         phone,
         grade: 1, 
-        role: 1
+        role: 1,
+        avatar
     });
 
     return newOfficer;

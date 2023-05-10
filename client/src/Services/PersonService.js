@@ -15,3 +15,11 @@ export const getAllPersons = () => {
         return error.message
     }
 }
+
+export const updatePerson = (id, data) => {
+    try {
+        return axios.put(`http://localhost:5000/persons/${id}`, data)
+    } catch (error) {
+        return error.message
+    }
+}

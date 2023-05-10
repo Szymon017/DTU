@@ -5,6 +5,7 @@ import cors from 'cors'
 import Officers from './routes/Officers.js'
 import Cases from './routes/Cases.js'
 import Persons from './routes/Persons.js'
+import Crime from './routes/Crime.js'
 dotenv.config();
 
 const app = express();
@@ -29,7 +30,7 @@ try{
 app.use('/officers', Officers)
 app.use('/cases', Cases)
 app.use('/persons', Persons)
-
+app.use('/crime', Crime)
 app.listen(PORT, (err) => {
     console.log(`Server running on port ${PORT}`);
 })
