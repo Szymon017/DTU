@@ -24,6 +24,11 @@ const CrimeOrgSchema = mongoose.Schema({
         required:false,
         default: "https://cdn.dribbble.com/users/25373/screenshots/16939058/comp-1_2_still_2x.gif?compress=1&resize=400x300&vertical=top"
     },
+    orgAreaPhoto: {
+        type: String,
+        required: false,
+        default: "https://cms-assets.tutsplus.com/cdn-cgi/image/width=630/uploads/users/127/posts/31881/final_image/3_7a.png"
+    },
     members: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: Person
@@ -31,7 +36,11 @@ const CrimeOrgSchema = mongoose.Schema({
     cases:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: Case
-    }]
+    }],
+    description: {
+        type:String,
+        required: false
+    }
 })
 
 const CrimeOrg = mongoose.model("CrimeOrg", CrimeOrgSchema)

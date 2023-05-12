@@ -62,12 +62,8 @@ const updateCrimeOrg = async(req,res) => {
     }
 }
 
-const deleteCrime = async(req, res) => {
-
-}
-
 export{
     addCrime,
     getAllCrimeOrgs,
-    updateCrimeOrg
+    updateCrimeOrg,
 }

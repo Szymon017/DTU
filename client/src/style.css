@@ -373,67 +373,146 @@ body {
   height:100%;
   background-color:#131720;
   border-left: 3px solid rgb(0, 0, 0);
-  
-}
-
-.crimeTiles{
-  padding-top: 1rem;
-  height: 100%;
+  overflow-y: scroll;
 }
 
 .crimeTile1{
-  border-right: 3px dotted black;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid rgb(44, 44, 44);
+  background: rgb(15, 16, 22);
+  max-width: 40%;
+  border-right: #303030 solid 3px;
 }
 
 .crimeTile1 img{
   border-radius: 50%;
   height:200px;
-  border: 2px black solid;
+  width: 200px;
+  border: 5px rgb(44, 44, 44) solid;
   background-color: rgb(53, 53, 53);
+  margin-top: 2rem;
 }
 
 .crimeTile2{
-  border-bottom: 3px solid black;
-
+  width: 70%;
+  height: 100%;
+  padding:1rem;
+  border-bottom: 3px solid rgb(44, 44, 44);
+  background-color: rgb(15, 16, 22);
 }
 
 .crimeTile3{
-  border-right: 3px solid black;
-  height:100%;
-  background-color: black;
+  border-bottom:  #1f1f1f solid 3px;
+  background-color: rgb(11, 11, 15);
+  max-width: 40%;
+  border-right: #1f1f1f solid 3px;
+  height: 100%;
+}
+
+.crimeTile4{
+  width: 70%;
+  height: 100%;
+  padding:1rem;
+  border-bottom: #1f1f1f solid 3px;
+  background-color:  rgb(11, 11, 15);
+}
+
+.crimeTile2 img{
+max-width:100%;
+max-height:100%;
+border: 3px solid rgb(146, 146, 146);
+}
+
+.crimeActualCasesTable{
+  border: 3px solid rgb(146, 146, 146);
+  background-color: #070c1b;
+  overflow-y:auto;
+  height: 100%
+}
+
+.crimeActualCasesSingle{
+  border-bottom: 1px solid white;
+  padding:0.5rem;
+
+}
+
+.crimeActualCasesSingle:hover{
+  background-color: #0f1938;
+}
+
+.crimePersonsTableHeaders{
+  height: 10%;
+  background-color: #303030;
+}
+
+.crimePersonsTable{
+  height: 90%;
   overflow-y: scroll;
 }
 
-.crimeSingleCase{
+.crimePersonsTableSingle{
+  max-width: 33.3%;
   border-bottom: 1px solid white;
   padding: 0.5rem;
+  overflow-wrap: break-word;
 }
 
-.crimeSingleCase:hover{
-  background-color: #131313;
+.crimePersonsTableSingleRow:hover{
+  background-color: #132047;
   cursor: pointer;
 }
 
-.crimeMembersTable {
-  height:100%;
-  margin-left: 1rem;
-}
-
-.crimeMembersTableHeader{
-  background-color: black;
-  padding: 0.5rem;
-  border-bottom: 2px solid white;
-  height: 20%;
-}
-
-.crimeMembers{
-  height: 80%;
-  background-color: rgb(11, 11, 46);
+.crimePersonText {
+  max-width: 70%;
+  margin-left:auto;
+  margin-right: auto;
+  border: 3px solid #303030;
+  background-color: #070c1b;
+  padding: 1rem;
+  overflow-wrap: break-word;
   overflow-y: scroll;
 }
 
-.crimeMembersSinglePerson{
-  border-bottom: 1px solid white;
+.crimePersonMenu{
+  max-width: 30%;
+}
+
+.tableOption:hover{
+  color: red; 
   cursor: pointer;
+
+}
+
+.tableOption input{
+  height:70%;
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  border-width: 1px;
+  border-color: #CCCCCC;
+  background-color: #FFFFFF;
+  color: #000000;
+  border-style: solid;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px rgba(66,66,66,.75);
+  text-shadow: 0px 0px 5px rgba(66,66,66,.75);
+}
+
+.tableOption input:focus{
+outline: none;
+}
+
+.modal-content {
+  color:white;
+  background-color: #303030;
+  align-items: center;
+  margin-top: 60%;
+  text-align: center;
+}
+
+.modal-content form{
+margin-top: 2rem;
+}
+
+.modal-footer{
+  border: none;
 }

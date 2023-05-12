@@ -45,15 +45,34 @@ const updatePerson = async (req, res) => {
 
 }
 
-const getAllPersons = async (req, res) => {
+const getPersons = async (req, res) => {
+    const query = {}
+    console.log(req.query.id);
+    if(req.query.id){
+        query.id = req.query.id
+    }
     try {
-        const result = await Person.find({})
-        res.status(200).json({
-            message: "success",
-            results: result
-        })
+        if(req.body){
+            const result = await Person.find(query)
+            if(result.length > 0){
+                res.status(200).json({
+                    message: "success",
+                    results: result
+                })
+            }else{
+                res.status(404).json({
+                    message: "Brak osoby o podanym numerze dowodu"
+                })
+            }
+        }else{
+            const result = await Person.find({})
+            res.status(200).json({
+                message: "success",
+                results: result
+            })
+        }
     } catch (err) {
-        res.status(500).json({
+        res.status(404).json({
             error: err.message
         })
     }
@@ -61,6 +80,6 @@ const getAllPersons = async (req, res) => {
 
 export {
     addNewPerson,
-    getAllPersons,
+    getPersons,
     updatePerson
 }

@@ -12,7 +12,7 @@ const register = async (req, res) => {
     const { firstName, lastName, login, password, phone, avatar } = req.body;
     console.log(req.body);
     try {
-        const sign = await Officer.signUp(firstName, lastName, login, password, phone,1, avatar)
+        const sign = await Officer.signUp(firstName, lastName, login, password, phone,1,     avatar)
         res.status(200).json({
             message: "success"
         })

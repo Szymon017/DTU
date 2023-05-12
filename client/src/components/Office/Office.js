@@ -109,7 +109,7 @@ const Office = () => {
                     </Col>
                   </Row>
                   
-                ):("s")}
+                ):("")}
               </Col>
             </Row>
           </Col>

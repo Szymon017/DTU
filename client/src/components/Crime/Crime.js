@@ -26,6 +26,7 @@ const Crime = () => {
         const result = await getAllCrimeOrgs();
         console.log(result);
         setCrimeOrgs(result.data.results)
+        setActualOrg(result.data.results[0])
     }
 
     const handleClick = async (e) => {

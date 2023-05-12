@@ -17,6 +17,7 @@ const addNewCase = async(req, res) => {
 }
 
 const getAllCases = async(req, res) => {
+    console.log(res.body);
     try{
         const result = await Case.find({}).populate('officers', 'firstName lastName')
         res.status(200).json({
