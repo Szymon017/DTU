@@ -10,12 +10,12 @@ import logo from '../../assets/images/logo.png'
 import { getCurrentOfficer } from "../../Services/OfficerService";
 import { addNewCase, getAllCases, deleteCase } from "../../Services/CasesService";
 import { format } from 'date-fns'
+import { editCase } from "../../Services/CasesService";
 
 
 const MyCases = () => {
     const initialState = {
         title: "",
-        officers: "6410e6ff02e0aee10cdb8403",
         date: Date.now()
     }
 
@@ -39,18 +39,24 @@ const MyCases = () => {
 
     }
 
-    const handleClick = async(e) => {
+    const handleClick = async (e) => {
         e.preventDefault();
+        console.log(newCase);
         const result = await addNewCase(newCase);
-        console.log(result);
         setNewCase(null)
         setCaseForm(true)
         getCases();
     }
 
-    const getCases = async() => {
-        const result = await getAllCases();
-        console.log(result);
+    const handleDelete = async (key) => {
+        const updatedCases = allCases.filter(x => x._id !== key._id);
+
+        setAllCases(updatedCases)
+        const result = await editCase(key._id, {archived: true});
+    }
+
+    const getCases = async () => {
+        const result = await getAllCases({archived: false});
         setAllCases(result.data.results)
     }
 
@@ -58,19 +64,27 @@ const MyCases = () => {
         getCases()
     }, []);
 
-    
+    useEffect(() => {
+        setNewCase({
+            ...newCase,
+            ['officers']: currentOfficer._id
+        })
+    },[currentOfficer])
+
     return (
         <>
             <Container className="defaultContainer" fluid >
                 <Row style={{ "width": "100%" }}>
                     <Col lg={2} className='MyCasesList'>
-                        <Button variant='dark' style={{ "margin-top": "1rem" }} onClick={() => { handleCaseTrigger() }}>Nowa teczka</Button>
+                        <Button variant='dark' style={{ "margin-top": "1rem" }} onClick={() => { handleCaseTrigger() }}>{caseForm?"Nowa teczka":"Wróć"}</Button>
                         {allCases?.map((key) => (
-                            <Row  className="singleCase"><Col onClick={() => { setActualCase(key) }}>{key.title}</Col><Col lg={2}><i class="bi bi-trash" style={{"color":"grey"}} onClick={()=>{console.log("Deleted");}}></i>
-                            </Col></Row>
+                            <Row className="singleCase"><Col onClick={() => { setActualCase(key) }}> <label style={{ "width": "90%" }}>{key.title}</label>
+                                <label style={{ "width": "10%" }}>
+                                    <i class="bi bi-trash xdd" style={{ "cursor": "pointer" }} onClick={() => { handleDelete(key) }} ></i>
+                                </label></Col></Row>
                         ))}
                     </Col>
-                    {caseForm && actualCase? (
+                    {caseForm && actualCase ? (
 
                         <Col>
                             <SingleCase case={actualCase} />
@@ -108,10 +122,11 @@ const MyCases = () => {
                                         type="text"
                                         name="date"
                                         className="folderInput"
-                                        placeholder={format(Date.now(),"dd/mm/yyyy")}
+                                        placeholder={format(Date.now(), "dd/MM/yyyy")}
                                         required="true"
+                                        disabled={true}
                                         onChange={handleChange} />
-                    </Col></Row>
+                                </Col></Row>
                                 <Row style={{ "margin-top": "4rem" }}><Col><Col /></Col><Col><input type='submit' className="folderInput" value={currentOfficer.firstName + " " + currentOfficer.lastName} onClick={(e) => { handleClick(e) }} /></Col></Row>
                             </form>
                         </Col>

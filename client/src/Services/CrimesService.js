@@ -15,3 +15,19 @@ export const addNewCrimeOrg = async (data) => {
         return error.message
     }
 }
+
+export const updateCrimeOrg = async (id, data) => {
+    try {
+        return await axios.put(`http://localhost:5000/crime/${id}`, data)
+    } catch (error) {
+        return error.message
+    }
+}
+
+export const archiveOrg = async(data) => {
+    try {
+        return await axios.put(`http://localhost:5000/crime/${data._id}`,data.archived)
+    } catch (error) {
+        return error.message
+    }
+}

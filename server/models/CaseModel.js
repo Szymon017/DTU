@@ -19,6 +19,10 @@ const CaseSchema = mongoose.Schema({
     date: {
         type: Date,
         default: Date.now()
+    },
+    archived: {
+        type: Boolean,
+        default: false
     }
 })
 

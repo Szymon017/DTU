@@ -60,8 +60,9 @@ const getPersons = async (req, res) => {
                     results: result
                 })
             }else{
-                res.status(404).json({
-                    message: "Brak osoby o podanym numerze dowodu"
+                res.status(200).json({
+                    message: "Brak osoby o podanym numerze dowodu",
+                    results: result
                 })
             }
         }else{

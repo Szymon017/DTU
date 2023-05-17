@@ -17,9 +17,14 @@ const addNewCase = async(req, res) => {
 }
 
 const getAllCases = async(req, res) => {
-    console.log(res.body);
+    const query = {}
+    console.log(req.query);
+    if(req.query.archived){
+        query.archived = req.query.archived
+    }
+
     try{
-        const result = await Case.find({}).populate('officers', 'firstName lastName')
+        const result = await Case.find(query).populate('officers', 'firstName lastName')
         res.status(200).json({
             message: "Successfully got all cases",
             results: result

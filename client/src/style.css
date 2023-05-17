@@ -118,10 +118,15 @@ body {
 }
 
 .singleCase {
+  width: 100%;
   font-size: 20px;
   background-color: #2c3853;
   margin: 1rem;
   transition-duration: 0.5s;
+}
+
+.bi-trash:hover{
+  color:rgb(129, 0, 0);
 }
 
 .singleCase:hover {

@@ -8,9 +8,16 @@ export const addNewCase = async (caseData) => {
     }
 }
 
-export const getAllCases = async () => {
+export const getAllCases = async (data) => {
+    let url = "?";
+    if(data){
+        if(data.archived ===false){
+
+            url += `archived=${data.archived}&`
+        }
+    }
     try {
-        return await axios.get('http://localhost:5000/cases')
+        return await axios.get(`http://localhost:5000/cases${url}`)
     } catch (err) { 
         return err
     }

@@ -6,7 +6,7 @@ import CrimeData from '../../testdata/crime.json'
 import SingleCrime from './SingleCrime';
 import { Button } from 'react-bootstrap';
 import Colors from '../../assets/Colors';
-import { addNewCrimeOrg, getAllCrimeOrgs } from '../../Services/CrimesService';
+import { addNewCrimeOrg, archiveOrg, getAllCrimeOrgs, updateCrimeOrg } from '../../Services/CrimesService';
 const Crime = () => {
     const [actualOrg, setActualOrg] = useState();
     const [orgForm, setOrgForm] = useState(false)
@@ -24,7 +24,6 @@ const Crime = () => {
 
     const getCrimeOrgs = async () => {
         const result = await getAllCrimeOrgs();
-        console.log(result);
         setCrimeOrgs(result.data.results)
         setActualOrg(result.data.results[0])
     }
@@ -32,6 +31,16 @@ const Crime = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         const result = await addNewCrimeOrg(newCrimeOrg)
+        setCrimeOrgs([...crimeOrgs, result.data.object])
+        setNewCrimeOrg()
+        setOrgForm(false)
+    }
+
+    const handleDelete = async (data) => {
+        const updatedCrimes = crimeOrgs.filter(org => org._id !== data._id)
+        setCrimeOrgs(updatedCrimes)
+
+        const result = await updateCrimeOrg(data._id, { archived: true })
         console.log(result);
     }
 
@@ -46,7 +55,16 @@ const Crime = () => {
                     <Col lg={2} className='MyCasesList'>
                         <Button variant='warning' style={{ "margin": "1rem" }} onClick={() => { setOrgForm(!orgForm) }}>Dodaj</Button>
                         {crimeOrgs?.map((key) => (
-                            <Row><Col className="singleCase" onClick={() => { setActualOrg(key) }}>{key.name}</Col></Row>
+                            !key?.archived && (
+
+                                <Row style={{ "width": "100%" }}>
+                                <Col className="singleCase" onClick={() => { setActualOrg(key) }}>
+                                <label style={{ "width": "90%" }}>{key.name}</label>
+                                <label style={{ "width": "10%" }}><i class="bi bi-trash xdd" style={{ "cursor": "pointer" }} onClick={() => { handleDelete(key) }}></i></label>
+                                </Col>
+                                </Row>
+                                )
+
                         ))}
                     </Col>
 
@@ -94,8 +112,8 @@ const Crime = () => {
                         </Col>
                     )}
 
-                </Row>
-            </Container>
+                </Row >
+            </Container >
         </>
     )
 }

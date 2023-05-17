@@ -21,9 +21,18 @@ export const getCurrentOfficer = () => {
     }
 }
 
-export const getAllOfficers = async() => {
+export const getAllOfficers = async(filters) => {
+    let url = "?"
+    if(filters){
+        if(filters.firstName){
+            url += `firstName=${filters.firstName}&`
+        }
+        if(filters.lastName){
+            url += `lastName=${filters.lastName}&`
+        }
+    }
     try {
-        return await axios.get('http://localhost:5000/officers/all')
+        return await axios.get(`http://localhost:5000/officers/all${url}`)
     } catch (err) {
         return err
     }

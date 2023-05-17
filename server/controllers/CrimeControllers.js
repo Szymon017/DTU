@@ -42,7 +42,8 @@ const getAllCrimeOrgs = async(req,res) => {
 }
 
 const updateCrimeOrg = async(req,res) => {
-    console.log("Updating crimeOrg" + req.body.params);
+    console.log("Updating crimeOrg");
+    console.log(req.body);
     try {
         const newCrimeOrg = await CrimeOrg.findByIdAndUpdate(req.params.id, req.body, {
             new: true
@@ -62,8 +63,13 @@ const updateCrimeOrg = async(req,res) => {
     }
 }
 
+const deleteOrg = async(req, res) => {
+
+}
+
 export{
     addCrime,
     getAllCrimeOrgs,
     updateCrimeOrg,
+    deleteOrg
 }

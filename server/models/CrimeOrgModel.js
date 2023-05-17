@@ -40,7 +40,12 @@ const CrimeOrgSchema = mongoose.Schema({
     description: {
         type:String,
         required: false
+    },
+    archived:{
+        type: Boolean,
+        default: false
     }
+
 })
 
 const CrimeOrg = mongoose.model("CrimeOrg", CrimeOrgSchema)

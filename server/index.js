@@ -6,10 +6,14 @@ import Officers from './routes/Officers.js'
 import Cases from './routes/Cases.js'
 import Persons from './routes/Persons.js'
 import Crime from './routes/Crime.js'
+import bodyParser from 'body-parser'
+
 dotenv.config();
 
 const app = express();
 const PORT = Number(process.env.PORT) ;
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 app.use(express.json());
 app.use(cors({
