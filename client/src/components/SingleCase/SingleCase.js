@@ -20,6 +20,7 @@ const SingleCase = (props) => {
     const [show, setShow] = useState(false);
     const [errors, setErrors] = useState({});
     const [officerForm, setOfficerForm] = useState();
+    const [actualCard, setActualCard] = useState("Document" )
 
     const handleChange = (con) => {
         setContent(con)
@@ -34,6 +35,17 @@ const SingleCase = (props) => {
         })
     }
 
+    const deleteOfficer = async (id) => {
+        const updatedOfficers = actualCase.officers.filter(member => member._id !== id);
+
+        setActualCase(prevState => ({
+          ...prevState,
+          officers: updatedOfficers
+        }));
+        
+        const result = await editCase(actualCase._id, { officers: updatedOfficers });
+    }   
+
     const handleSubmitOfficer = async () => {
         const name = officerForm.name.split(' ')
         const firstName = name[0];
@@ -43,6 +55,9 @@ const SingleCase = (props) => {
             const temp = { ...actualCase };
             temp.officers.push(result.data.results[0])
             setActualCase(temp)
+            const result2 = await editCase(actualCase._id, temp)
+            console.log(result2);
+
         }
     }
 
@@ -95,14 +110,14 @@ const SingleCase = (props) => {
                         <Col>
                             {
                                 actualCase?.officers.map((value) => (
-                                    <label className='cops'>{value.firstName + " " + value.lastName}</label>
+                                    <label className='cops'>{value.firstName + " " + value.lastName} <i class="bi bi-x-circle" onClick={()=>{deleteOfficer(value._id)}}></i></label>
                                 ))
                             }
                             <Button variant="dark" onClick={() => { handleShow() }}>+</Button>
                         </Col>
                     </Row>
                     <Row>
-                        <Col className='caseMenu'><Button variant='dark'>Notatka</Button><Button variant='dark'>Dowody</Button><Button variant='dark'>Osoby powiązane</Button></Col>
+                        <Col className='caseMenu'><Button variant='dark'>Dokument</Button><Button variant='dark'>Dowody</Button><Button variant='dark'>Powiązania</Button></Col>
                     </Row>
                 </div>
                 {click ? <><Button onClick={() => { handleClick() }} variant="secondary m-1">Podgląd</Button><Button onClick={() => { handleSubmit() }} variant="secondary m-1">Zapisz</Button></> : <Button variant="dark m-1" onClick={() => { handleClick() }}>Edytuj</Button>}

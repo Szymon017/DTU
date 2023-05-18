@@ -2,7 +2,6 @@ import Case from"../models/CaseModel.js"
 
 const addNewCase = async(req, res) => {
     const {title, officers, date} = req.body;
-    console.log(req.body)
     try{
         const newCase = await Case.create({title, officers, date});
         res.status(200).json({
@@ -18,7 +17,6 @@ const addNewCase = async(req, res) => {
 
 const getAllCases = async(req, res) => {
     const query = {}
-    console.log(req.query);
     if(req.query.archived){
         query.archived = req.query.archived
     }
@@ -37,7 +35,6 @@ const getAllCases = async(req, res) => {
 }
 
 const deleteCase = async(req, res) => {
-    console.log(req.params.id);
     try{
         const result = await Case.findByIdAndDelete({_id: req.params.id})
         res.status(200).json({
@@ -52,7 +49,6 @@ const deleteCase = async(req, res) => {
 }
 
 const updateCase = async(req, res) => {
-    console.log(req.body);
     try {
         const newCase = await Case.findByIdAndUpdate(
             req.params.id,

@@ -153,10 +153,15 @@ body {
 
 .cops {
   margin: 0 1rem 0rem 1rem;
-  padding: 0.1rem;
+  padding: 0.1rem 0.5rem;
   background-color: grey;
   border-radius: 5%;
   font-size: 14px;
+  
+}
+
+.cops .bi:hover{
+  color: rgb(109, 0, 0)
 }
 
 .singleCaseContainer {

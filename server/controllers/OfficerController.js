@@ -79,7 +79,6 @@ const deleteOfficer = async(req,res) => {
     }
 }
 
-
 export {
     register,
     login,
