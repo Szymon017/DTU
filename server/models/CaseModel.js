@@ -23,7 +23,15 @@ const CaseSchema = mongoose.Schema({
     archived: {
         type: Boolean,
         default: false
-    }
+    },
+    evidences: [{
+        description: {
+            type: String,
+        },
+        photo: {
+            type: String
+        }
+    }]
 })
 
 const Case = mongoose.model("Case", CaseSchema)
