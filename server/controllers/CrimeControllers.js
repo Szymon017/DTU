@@ -1,7 +1,7 @@
 import CrimeOrg from "../models/CrimeOrgModel.js";
 
 const addCrime = async(req,res) => {
-    const {name, color, dangerLevel, photo} = req.body;
+    const {name, color, dangerLevel, photo, orgAreaPhoto} = req.body;
     console.log(req.body);
     try {
         if(!name){
@@ -14,7 +14,8 @@ const addCrime = async(req,res) => {
             name, 
             color,
             dangerLevel,
-            photo
+            photo,
+            orgAreaPhoto
         })
         res.status(200).json({
             message: "Successfully added new crime organization",
@@ -28,12 +29,36 @@ const addCrime = async(req,res) => {
 }
 
 const getAllCrimeOrgs = async(req,res) => {
+    let query = {}
+    if(req.query.name){
+        query.name = req.query.name
+    }
+    if(req.query.archived){
+        query.archived = req.query.archived
+    }
+    console.log(query.name);
     try {
-        const result = await CrimeOrg.find({}).populate("cases").populate("members")
-        res.status(200).json({
-            message: "success",
-            results: result
-        })
+        if(req.query){
+            const result = await CrimeOrg.find(query).populate("members")
+            if(result.length < 1) {
+                res.status(200).json({
+                    message: "Brak organizacji o podanej nazwie",
+                    results: result
+                })
+            }else{
+                res.status(200).json({
+                    message: "success",
+                    results: result
+                })
+            }
+        }else{
+            const result = await CrimeOrg.find().populate("members")
+            res.status(200).json({
+                message: "success",
+                results: result
+            })
+        }
+        
     } catch (err) {
         res.status(500).json({
             error: err.message

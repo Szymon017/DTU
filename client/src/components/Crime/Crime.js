@@ -24,8 +24,11 @@ const Crime = () => {
 
     const getCrimeOrgs = async () => {
         const result = await getAllCrimeOrgs();
+        console.log(result);
         setCrimeOrgs(result.data.results)
-        setActualOrg(result.data.results[0])
+        result.data.results.map((key)=>(
+            key.archived&(setActualOrg(key)
+        )))
     }
 
     const handleClick = async (e) => {
@@ -100,6 +103,12 @@ const Crime = () => {
                                             name="photo"
                                             onChange={handleChange}
                                         /><p>Zdjęcie</p>
+                                        <p className="text-danger"></p>
+                                        <input
+                                            type="text"
+                                            name="orgAreaPhoto"
+                                            onChange={handleChange}
+                                        /><p>Teren organizacji</p>
                                         <p className="text-danger"></p>
                                         <input type="submit" onClick={handleClick} value="Dodaj" />
                                     </form>

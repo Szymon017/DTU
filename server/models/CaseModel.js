@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import Officer from "./OfficerModel.js";
+import Person from "./Person.js";
+import CrimeOrg from "./CrimeOrgModel.js";
 
 const CaseSchema = mongoose.Schema({
     title: {
@@ -31,6 +33,14 @@ const CaseSchema = mongoose.Schema({
         photo: {
             type: String
         }
+    }],
+    persons: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Person
+    }],
+    orgs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: CrimeOrg
     }]
 })
 

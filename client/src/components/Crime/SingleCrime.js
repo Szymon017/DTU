@@ -122,9 +122,9 @@ const SingleCrime = (props) => {
                             <Col style={{ "height": "100%" }}>
                                 <Row style={{ "height": "100%" }}>
                                     <Col className="crimeActualCasesTable">
-                                        {actualOrg?.cases.map((key) => (
+                                       {/* {actualOrg?.cases.map((key) => (
                                             <Row><Col className="crimeActualCasesSingle">{key.title}</Col></Row>
-                                        ))}
+                                        ))}*/}
                                     </Col>
                                 </Row>
                             </Col>

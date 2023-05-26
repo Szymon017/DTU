@@ -52,7 +52,7 @@ const getPersons = async (req, res) => {
         query.id = req.query.id
     }
     try {
-        if(req.body){
+        if(req.query){
             const result = await Person.find(query)
             if(result.length > 0){
                 res.status(200).json({

@@ -12,7 +12,8 @@ export const getAllCases = async (data) => {
     let url = "?";
     if(data){
         if(data.archived ===false){
-
+            url += `archived=${data.archived}&`
+        }else{
             url += `archived=${data.archived}&`
         }
     }

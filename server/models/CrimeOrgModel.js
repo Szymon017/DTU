@@ -33,10 +33,6 @@ const CrimeOrgSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: Person
     }],
-    cases:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: Case
-    }],
     description: {
         type:String,
         required: false

@@ -22,7 +22,7 @@ const getAllCases = async(req, res) => {
     }
 
     try{
-        const result = await Case.find(query).populate('officers', 'firstName lastName')
+        const result = await Case.find(query).populate('officers orgs persons', 'firstName lastName name photo')
         res.status(200).json({
             message: "Successfully got all cases",
             results: result
