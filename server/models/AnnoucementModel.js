@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Officer from "./OfficerModel";
+import Officer from "../models/OfficerModel.js";
 
 const AnnoucementSchema = mongoose.Schema({
     title: {
@@ -10,20 +10,20 @@ const AnnoucementSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: Officer,
-        required: true
-    },
     posX: {
-        type: Double,
+        type: Number,
         required: true
     },
     posY: {
-        type: Double, 
+        type: Number, 
         required: true
+    },
+    color: {
+        type: String,
+        required: false,
+        default: "white"
     }
 })
 
-const Annoucement = mongoose.Model("Annoucement", AnnoucementSchema)
+const Annoucement = mongoose.model("Annoucement", AnnoucementSchema)
 export default Annoucement

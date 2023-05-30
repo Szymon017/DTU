@@ -158,6 +158,7 @@ body {
 
 .bi-trash:hover{
   color:rgb(129, 0, 0);
+  
 }
 
 .singleCase:hover {
@@ -299,13 +300,14 @@ body {
   padding: 1rem;
   border-radius: 2%;
   display: table;
+  color: black;
 }
 
 .note * {
-  color: black;
   inline-size: 200px;
   overflow: hidden;
   display: table;
+
 }
 
 #pinBoard {
@@ -555,7 +557,16 @@ outline: none;
 
 .modal-content input{
   color:black;
+}
 
+.modal-content select{
+  color:black;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-content option{
+  color: black;
 }
 
 .modal-content form{
@@ -635,4 +646,48 @@ margin-top: 2rem;
 
 .archiveTableSingle:hover {
  background-color: #1f2436
+}
+
+.contentNote{
+  min-height: 12rem;
+  max-width: 100%;
+  word-wrap: break-word;
+  color: black;
+}
+
+.white {
+  background-color: white;
+  color: black;
+}
+
+.black {
+  background-color: rgb(27, 27, 27);
+  color: white;
+  border: 1px solid white;
+}
+
+.yellow{
+  background-color: #f6ff7f;
+  color: black;
+}
+
+.green {
+  background-color: rgb(82, 173, 82);
+  color:black;
+}
+
+.white * {
+  color: black;
+}
+
+.black *{
+  color: white;
+}
+
+.yellow *{
+  color: black;
+}
+
+.green *{
+  color:black;
 }

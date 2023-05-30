@@ -13,7 +13,6 @@ const Menu = () => {
     const [currentOfficer, setCurrentOfficer] = useState(getCurrentOfficer())
     const handleClick = (site) => {
         window.location.replace(`http://localhost:3000/${site}`);
-
     }
     return (
         <>
