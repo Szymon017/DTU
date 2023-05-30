@@ -161,6 +161,11 @@ body {
   
 }
 
+.bi-pin:hover{
+  color: green;
+  font-weight:bolder;
+}
+
 .singleCase:hover {
   cursor: pointer;
   background-color: #48587e;
@@ -303,7 +308,7 @@ body {
   color: black;
 }
 
-.note * {
+.note h1, p {
   inline-size: 200px;
   overflow: hidden;
   display: table;
@@ -658,6 +663,7 @@ margin-top: 2rem;
 .white {
   background-color: white;
   color: black;
+  border: 1px solid rgb(82, 82, 82);
 }
 
 .black {
@@ -669,11 +675,13 @@ margin-top: 2rem;
 .yellow{
   background-color: #f6ff7f;
   color: black;
+  border: 1px solid #808356;
 }
 
 .green {
   background-color: rgb(82, 173, 82);
   color:black;
+  border: 1px solid rgb(37, 77, 37);
 }
 
 .white * {

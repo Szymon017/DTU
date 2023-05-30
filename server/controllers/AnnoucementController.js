@@ -45,6 +45,7 @@ const deleteAnAnnoucement = async (req, res) => {
 }
 
 const updateAnnoucement = async (req, res) => {
+    console.log(req.body);
     try {
         const newAnnoucement = await Annoucement.findByIdAndUpdate(
             req.params.id,

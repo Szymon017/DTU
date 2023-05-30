@@ -7,21 +7,22 @@ import Menu from '../components/Menu.js'
 import Current from './Current/Current';
 import Ann from '../testdata/annoucements.json'
 import { Note } from './Note';
-import { Ball } from './Ball';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import { getAllAnnoucements, addNewAnnoucement, deleteAnAnnoucement, updateAnnoucement } from '../Services/AnnoucementService';
-
+import ConfirmModal from './Modal/Confirm';
 
 const HomePage = () => {
 
     //Modal settings
     const [show, setShow] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
     const [newNoteForm, setNewNoteForm] = useState();
+    const [confirm, setConfirm] = useState(true)
+    const [actualId, setActualId] = useState();
 
     const handleClose = () => {
         setShow(false);
-        const handleShow = () => setShow(true);
     }
 
     const handleShow = () => setShow(true);
@@ -36,6 +37,24 @@ const HomePage = () => {
         });
     }
 
+    const handleConfirm = async (confirm) => {
+        setShowConfirm(false);
+        setConfirm(confirm);
+        console.log(actualId);
+        if (confirm) {
+            try {
+                const result = await deleteAnAnnoucement(actualId);
+                const updatedAnnoucements = annoucements.filter(ann => ann._id !== actualId)
+                console.log(updatedAnnoucements);
+                setAnnoucements(updatedAnnoucements);
+                setActualNote();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        setActualId("");
+        setConfirm(false);
+    }
 
     //note settings
     let xPos, yPos;
@@ -47,20 +66,37 @@ const HomePage = () => {
         xPos = e.clientX
         yPos = e.clientY
         const note = document.getElementById(actualNote)
-        console.log(note);
+
         note.style.position = 'absolute'
-        note.style.top = `${yPos - 200}` + 'px'
+        note.style.top = `${yPos - 250}` + 'px'
         note.style.left = `${xPos - 200}` + 'px'
         let x = document.getElementById("pinBoard");
         x.addEventListener("mousemove", move)
-        updatePos({posY: yPos, posX: xPos, _id: note.id})
+        console.log(note.style.top + " " + note.style.left);
+        const ann = annoucements;
+        const index = ann.findIndex(el => el._id === note.id)
+        console.log(ann[index]);
+        ann[index].posY = note.style.top;
+        ann[index].posX = note.style.left;
+        setAnnoucements(ann);
+        console.log(annoucements);
+
+        
     }
 
-    const updatePos = async(x) => {
-        const data = x
-        console.log(data);
-        const result = await updateAnnoucement(data)
-        console.log(result);
+    const updatePos = async (x) => {
+        const index = annoucements.findIndex(el => el._id === x)
+        const posX = annoucements[index].posX.slice(0, -2)
+        const posY = annoucements[index].posY.slice(0, -2)
+        console.log(posX);
+        try{
+            const result = await updateAnnoucement({posX: Number(posX), posY: Number(posY), _id: x});
+            console.log(result);
+        }catch(err){
+
+            console.log(err);
+        }
+        //setActualNote()
     }
 
     const disableMouse = (e) => {
@@ -82,22 +118,17 @@ const HomePage = () => {
     const handleAddNote = async () => {
         try {
             const result = await addNewAnnoucement(newNoteForm)
-            annoucements.push(result.data.results);
             console.log(result);
+            annoucements.push(result.data.results);
+            console.log(annoucements);
         } catch (error) {
+            console.log(error);
         }
     }
 
     const handleDeleteNote = async (e) => {
-        console.log(e);
-        try{
-            const result = await deleteAnAnnoucement(e);
-            const updatedAnnoucements = annoucements.filter(ann => ann._id !== e)
-            console.log(updatedAnnoucements);
-            setAnnoucements(updatedAnnoucements)
-        }catch(error){
-            console.log(error);
-        }
+        setShowConfirm(true);
+        setActualId(e);
     }
 
     //annoucements settings
@@ -121,13 +152,16 @@ const HomePage = () => {
                 <div id="pinBoard" onMouseDown={enableMouse} onMouseUp={disableMouse}>
                     <Button variant='dark' onClick={() => { handleShow() }}>Dodaj notatke</Button>
                     {annoucements?.map((key) => (
-                        <div className={`note ${key.color}`} id={key._id} style={{ "top": key.posY - 200 + "px", "left": key.posX - 200 + "px", "position": "absolute" }} onClick={() => { setActualNote(key._id) }}>
+                        <div className={`note ${key.color}`} id={key._id} style={{ "top": key.posY + "px", "left": key.posX + "px", "position": "absolute" }} onClick={() => { setActualNote(key._id) }}>
                             <div>
                                 <h1>{key.title}</h1>
                                 <p>{key.description}</p>
                             </div>
+                            <div style={{ float: "left", width: "10%" }}>
+                                <i style={{ maxWidth: "10%" }} className='bi bi-trash' onClick={() => { handleDeleteNote(key._id) }}></i>
+                            </div>
                             <div>
-                                <p><i style={{ maxWidth: "10%"}}className='bi bi-trash' onClick={()=>{handleDeleteNote(key._id)}}></i></p>
+                                <i style={{ maxWidth: "10%",float: "left", marginLeft: "0.5rem" }} class="bi bi-pin" onClick={()=>{updatePos(key._id)}}></i>
                             </div>
                         </div>
                     ))}
@@ -143,7 +177,7 @@ const HomePage = () => {
                             <p>Nagłówek</p>
                             <textarea
                                 className='contentNote'
-                                
+
                                 name="description"
                                 onChange={handleChange} />
                             <p>Treść</p>
@@ -165,6 +199,7 @@ const HomePage = () => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
+                <ConfirmModal isShown={showConfirm} onConfirm={handleConfirm}></ConfirmModal>
             </Container>
         </>
     )
