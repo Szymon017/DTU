@@ -7,11 +7,15 @@ import SingleCrime from './SingleCrime';
 import { Button } from 'react-bootstrap';
 import Colors from '../../assets/Colors';
 import { addNewCrimeOrg, archiveOrg, getAllCrimeOrgs, updateCrimeOrg } from '../../Services/CrimesService';
+import ConfirmModal from "../Modal/Confirm";
+
 const Crime = () => {
     const [actualOrg, setActualOrg] = useState();
     const [orgForm, setOrgForm] = useState(false)
     const [newCrimeOrg, setNewCrimeOrg] = useState();
     const [crimeOrgs, setCrimeOrgs] = useState()
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [id, setId] = useState();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,9 +30,9 @@ const Crime = () => {
         const result = await getAllCrimeOrgs();
         console.log(result);
         setCrimeOrgs(result.data.results)
-        result.data.results.map((key)=>(
-            key.archived&(setActualOrg(key)
-        )))
+        result.data.results.map((key) => (
+            key.archived & (setActualOrg(key)
+            )))
     }
 
     const handleClick = async (e) => {
@@ -40,13 +44,25 @@ const Crime = () => {
     }
 
     const handleDelete = async (data) => {
-        const updatedCrimes = crimeOrgs.filter(org => org._id !== data._id)
-        setCrimeOrgs(updatedCrimes)
+        // const updatedCrimes = crimeOrgs.filter(org => org._id !== data._id)
+        // setCrimeOrgs(updatedCrimes)
 
-        const result = await updateCrimeOrg(data._id, { archived: true })
-        console.log(result);
+        // const result = await updateCrimeOrg(data._id, { archived: true })
+        // console.log(result);
+        setShowConfirm(true);
+        setId(data);
     }
 
+    const handleConfirm = async (x) => {
+        if (x) {
+            const updatedCrimes = crimeOrgs.filter(org => org._id !== id._id)
+            setCrimeOrgs(updatedCrimes)
+            const result = await updateCrimeOrg(id._id, { archived: true })
+            console.log(result);
+        }
+        setId();
+        setShowConfirm(false);
+    }
     useEffect(() => {
         getCrimeOrgs()
     }, [])
@@ -61,12 +77,12 @@ const Crime = () => {
                             !key?.archived && (
 
                                 <Row style={{ "width": "100%" }}>
-                                <Col className="singleCase" onClick={() => { setActualOrg(key) }}>
-                                <label style={{ "width": "90%" }}>{key.name}</label>
-                                <label style={{ "width": "10%" }}><i class="bi bi-trash xdd" style={{ "cursor": "pointer" }} onClick={() => { handleDelete(key) }}></i></label>
-                                </Col>
+                                    <Col className="singleCase" onClick={() => { setActualOrg(key) }}>
+                                        <label style={{ "width": "90%" }}>{key.name}</label>
+                                        <label style={{ "width": "10%" }}><i class="bi bi-trash xdd" style={{ "cursor": "pointer" }} onClick={() => { handleDelete(key) }}></i></label>
+                                    </Col>
                                 </Row>
-                                )
+                            )
 
                         ))}
                     </Col>
@@ -122,6 +138,7 @@ const Crime = () => {
                     )}
 
                 </Row >
+                <ConfirmModal isShown={showConfirm} onConfirm={handleConfirm} />
             </Container >
         </>
     )

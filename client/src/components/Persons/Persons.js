@@ -135,7 +135,10 @@ const Persons = () => {
                                         <Col>
                                             {
                                                 allPersons?.map((value) => (
-                                                    <Row className="singlePerson" onClick={()=>{setActalPerson(value)}}><Col>{value.firstName}</Col><Col>{value.lastName}</Col></Row>
+                                                   <>
+                                                   <Row className="singlePerson" onClick={()=>{setActalPerson(value)}}><Col>{value.firstName}</Col><Col>{value.lastName}</Col></Row>
+                                                   
+                                                   </>
                                                 ))
                                             }
                                         </Col>

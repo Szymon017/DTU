@@ -15,6 +15,7 @@ import {
 } from "../../Services/CasesService";
 import { format } from "date-fns";
 import { editCase } from "../../Services/CasesService";
+import ConfirmModal from "../Modal/Confirm";
 
 const MyCases = () => {
   const initialState = {
@@ -27,6 +28,8 @@ const MyCases = () => {
   const [caseForm, setCaseForm] = useState(true);
   const [newCase, setNewCase] = useState(initialState);
   const [currentOfficer, setCurrentOfficer] = useState(getCurrentOfficer());
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [id, setId] = useState();
 
   const handleCaseTrigger = () => {
     setCaseForm(!caseForm);
@@ -42,7 +45,7 @@ const MyCases = () => {
   };
 
   const handleCaseChange = (x) => {
-   setActualCase(x)
+    setActualCase(x)
   }
 
   const handleClick = async (e) => {
@@ -54,11 +57,20 @@ const MyCases = () => {
     getCases();
   };
 
-  const handleDelete = async (key) => {
-    const updatedCases = allCases.filter((x) => x._id !== key._id);
+  const handleConfirm = async (x) => {
+    if (x) {
+      const updatedCases = allCases.filter((x) => x._id !== id._id);
+      setAllCases(updatedCases);
+      const result = await editCase(id._id, { archived: true });
+    } else {
+    }
+    setId();
+    setShowConfirm(false);
+  }
 
-    setAllCases(updatedCases);
-    const result = await editCase(key._id, { archived: true });
+  const handleDelete = async (key) => {
+    setShowConfirm(true);
+    setId(key);
   };
 
   const getCases = async () => {
@@ -79,9 +91,9 @@ const MyCases = () => {
 
   return (
     <Container className="defaultContainer2" fluid >
-      <Row style={{height: "100%"}}>
+      <Row style={{ height: "100%" }}>
         <Col className="caseList">
-          <Row style={{maxHeight: "100%"}}>
+          <Row style={{ maxHeight: "100%" }}>
             <Col className="MyCasesList">
               <Button
                 variant="dark"
@@ -100,7 +112,7 @@ const MyCases = () => {
                       handleCaseChange(key);
                     }}
                   >
-                 
+
                     <label style={{ width: "90%" }}>{key.title}</label>
                     <label style={{ width: "10%" }}>
                       <i
@@ -197,6 +209,7 @@ const MyCases = () => {
           )}
         </Col>
       </Row>
+      <ConfirmModal isShown={showConfirm} onConfirm={handleConfirm} />
     </Container>
   );
 };

@@ -18,7 +18,6 @@ const HomePage = () => {
     const [show, setShow] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [newNoteForm, setNewNoteForm] = useState();
-    const [confirm, setConfirm] = useState(true)
     const [actualId, setActualId] = useState();
 
     const handleClose = () => {
@@ -39,7 +38,6 @@ const HomePage = () => {
 
     const handleConfirm = async (confirm) => {
         setShowConfirm(false);
-        setConfirm(confirm);
         console.log(actualId);
         if (confirm) {
             try {
@@ -53,7 +51,6 @@ const HomePage = () => {
             }
         }
         setActualId("");
-        setConfirm(false);
     }
 
     //note settings
@@ -96,7 +93,7 @@ const HomePage = () => {
 
             console.log(err);
         }
-        //setActualNote()
+        setActualNote();
     }
 
     const disableMouse = (e) => {
