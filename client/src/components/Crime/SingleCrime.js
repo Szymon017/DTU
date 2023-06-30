@@ -8,6 +8,7 @@ import Persons from '../../testdata/persons.json'
 import JoditEditor from "jodit-react";
 import { getAllPersons, getPerson } from '../../Services/PersonService';
 import { updateCrimeOrg } from '../../Services/CrimesService';
+import { getAllCases } from '../../Services/CasesService';
 const SingleCrime = (props) => {
 
     const [actualOrg, setActualOrg] = useState()
@@ -18,10 +19,13 @@ const SingleCrime = (props) => {
     const [newMemberForm, setNewMemberForm] = useState()
     const [show, setShow] = useState(false);
     const [errors, setErrors] = useState({});
+    const [related, setRelated] = useState();
+    const drops = [1, 2, 3, 4, 5];
 
     const handleClose = () => {
         setShow(false);
-        setErrors()}
+        setErrors()
+    }
     const handleShow = () => setShow(true);
 
     const handleClick = ((value) => {
@@ -39,8 +43,10 @@ const SingleCrime = (props) => {
     }), [])
 
     useEffect(() => {
-        if(actualOrg){
+        if (actualOrg) {
             setContent(actualOrg.description)
+            getRelated(props.actual._id)
+
         }
     }, [actualOrg])
 
@@ -48,28 +54,35 @@ const SingleCrime = (props) => {
         setActualOrg(props.actual);
     }, [props.actual])
 
+    const getRelated = async (id) => {
+        const result = await getAllCases({ orgs: id });
+        console.log(result);
+        setRelated(result.data.results);
+    }
+
+
     const handleAddMember = async () => {
         const result = await getAllPersons(newMemberForm)
-        if(result.data.results.length < 1){
+        if (result.data.results.length < 1) {
             setErrors({
                 ...errors,
                 ['userId']: "Brak osoby w bazie",
             })
-        }else{
+        } else {
             setShow(false);
             setErrors()
-           const temp = {...actualOrg};
-           temp.members.push(result.data.results[0])
-           setActualOrg(temp)
-      
-            const result2 = await updateCrimeOrg(actualOrg._id, {members: actualOrg.members})
+            const temp = { ...actualOrg };
+            temp.members.push(result.data.results[0])
+            setActualOrg(temp)
+
+            const result2 = await updateCrimeOrg(actualOrg._id, { members: actualOrg.members })
             console.log(result2);
 
         }
     }
 
-    const handleUpdateDesc = async(e) => {
-        const result = await updateCrimeOrg(actualOrg._id,{description: content})
+    const handleUpdateDesc = async (e) => {
+        const result = await updateCrimeOrg(actualOrg._id, { description: content })
         actualOrg.description = content
         console.log(result);
     }
@@ -80,21 +93,21 @@ const SingleCrime = (props) => {
 
         setNewMemberForm({
             ...newMemberForm,
-            [name]:  value,
+            [name]: value,
         });
     }
 
-    const removeMember = async(id)=>{
-        
+    const removeMember = async (id) => {
+
         const updatedMembers = actualOrg.members.filter(member => member._id !== id);
 
         setActualOrg(prevState => ({
-          ...prevState,
-          members: updatedMembers
+            ...prevState,
+            members: updatedMembers
         }));
-        
+
         const result = await updateCrimeOrg(actualOrg._id, { members: updatedMembers });
-        
+
     }
     return (
         <>
@@ -104,11 +117,16 @@ const SingleCrime = (props) => {
                         <img src={actualOrg?.photo} />
                         <p></p>
                         <h1><b>{actualOrg?.name}</b></h1>
-                        <i class="bi bi-droplet-fill" style={{ "color": "red" }}></i>
-                        <i class="bi bi-droplet-fill" style={{ "color": "red" }}></i>
-                        <i class="bi bi-droplet-fill" style={{ "color": "red" }}></i>
-                        <i class="bi bi-droplet-fill" style={{ "color": "black" }}></i>
-                        <i class="bi bi-droplet-fill" style={{ "color": "black" }}></i>
+                        {actualOrg ? (
+                            <>
+                                {drops.map((key) => (
+                                    key <= actualOrg.dangerLevel ? (
+                                        <i class="bi bi-droplet-fill" style={{ "color": "red" }}></i>
+                                    ) : (<i class="bi bi-droplet-fill" style={{ "color": "grey" }}></i>
+                                    )
+                                ))}
+                            </>
+                        ) : ("")}
 
                     </Col>
                     <Col className="crimeTile2">
@@ -122,9 +140,9 @@ const SingleCrime = (props) => {
                             <Col style={{ "height": "100%" }}>
                                 <Row style={{ "height": "100%" }}>
                                     <Col className="crimeActualCasesTable">
-                                       {/* {actualOrg?.cases.map((key) => (
+                                        {related?.map((key) => (
                                             <Row><Col className="crimeActualCasesSingle">{key.title}</Col></Row>
-                                        ))}*/}
+                                        ))}
                                     </Col>
                                 </Row>
                             </Col>
@@ -151,7 +169,7 @@ const SingleCrime = (props) => {
                                                 <Col className="crimePersonsTableSingle">{key.firstName}</Col>
                                                 <Col className="crimePersonsTableSingle">{key.lastName}</Col>
                                                 <Col className="crimePersonsTableSingle">Member</Col>
-                                                <Col xs lg={1} className="crimePersonsTableSingle"><i className='bi bi-trash' onClick={()=>{removeMember(key._id)}}></i></Col>
+                                                <Col xs lg={1} className="crimePersonsTableSingle"><i className='bi bi-trash' onClick={() => { removeMember(key._id) }}></i></Col>
                                             </Row>
                                         ))}
                                     </Col>
@@ -165,7 +183,7 @@ const SingleCrime = (props) => {
                                 {!editDesc ? (
                                     <Button variant="dark" onClick={() => { setEditDesc(true) }}>Edytuj opis</Button>
                                 ) : (
-                                    <Button variant="dark" onClick={() => { setEditDesc(false); handleUpdateDesc()}}>Zapisz</Button>
+                                    <Button variant="dark" onClick={() => { setEditDesc(false); handleUpdateDesc() }}>Zapisz</Button>
                                 )}
                             </Col>
                             <Col className="crimePersonText">
@@ -186,19 +204,19 @@ const SingleCrime = (props) => {
                 <Modal show={show} onHide={handleClose} className="addNewCrimeMemberModal">
                     <Modal.Body><h5>Dodaj nowego członka</h5>
                         <form>
-                            <input 
-                            type="text"
-                            name="id"
-                            onChange={handleChangeMember} />
+                            <input
+                                type="text"
+                                name="id"
+                                onChange={handleChangeMember} />
                             <p>Numer dowodu</p>
-                            {<p style={{"color":"red"}}>{errors?.userId?errors.userId:""}</p>}
+                            {<p style={{ "color": "red" }}>{errors?.userId ? errors.userId : ""}</p>}
                         </form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Zamknij
                         </Button>
-                        <Button variant="warning" onClick={() => {  handleAddMember() }}>
+                        <Button variant="warning" onClick={() => { handleAddMember() }}>
                             Dodaj
                         </Button>
                     </Modal.Footer>

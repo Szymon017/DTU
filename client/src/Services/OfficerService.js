@@ -2,8 +2,14 @@ import axios from 'axios';
 import jwt_decode from "jwt-decode";
 
 export const login = async (officer) => {
+    const token = localStorage.getItem("token")
+
     try {
-        return await axios.post('http://localhost:5000/officers/login', officer)
+        return await axios.post('http://localhost:5000/officers/login', officer,{
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
     } catch (err) {
         return err
     }
@@ -22,6 +28,8 @@ export const getCurrentOfficer = () => {
 }
 
 export const getAllOfficers = async(filters) => {
+    const token = localStorage.getItem("token")
+
     let url = "?"
     if(filters){
         if(filters.firstName){
@@ -32,25 +40,56 @@ export const getAllOfficers = async(filters) => {
         }
     }
     try {
-        return await axios.get(`http://localhost:5000/officers/all${url}`)
+        return await axios.get(`http://localhost:5000/officers/all${url}`,{
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
     } catch (err) {
         return err
     }
 }
 
 export const addNewOfficer = async(data) => {
+    const token = localStorage.getItem("token")
+
     console.log("DATA", data);
     try {
-        return await axios.post('http://localhost:5000/officers',data)
+        return await axios.post('http://localhost:5000/officers',data,{
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
     } catch (error) {
         return error
     }
 }
 
 export const deleteOfficer = async(id) => {
+    const token = localStorage.getItem("token")
+
     try {
-        return await axios.delete(`http://localhost:5000/officers/${id}`)
+        return await axios.delete(`http://localhost:5000/officers/${id}`,{
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
     } catch (error) {
         return error
     }
+}
+
+export const authOfficer = async(token) => {
+    const token2 = token
+    try{
+        return await axios.get(`http://localhost:5000/officers/authenticate`,{
+            headers: {
+                authorization: `Bearer ${token2}`
+            }
+        })
+    }catch(error){
+        return error
+    }
+
+
 }

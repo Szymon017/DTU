@@ -26,7 +26,7 @@ const Office = () => {
     setNewOfficer(null)
   }
 
-  const handleDeleteOfficer = async(id) => {
+  const handleDeleteOfficer = async (id) => {
     const result = await deleteOfficer(id)
     console.log(result);
   }
@@ -49,85 +49,89 @@ const Office = () => {
   return (
     <>
       <Container className="defaultContainer" fluid>
-        <Row>
+        <Row style={{ "height": "10%" }}>
           <Col style={{ padding: "1rem" }}>
             <h1>Biuro</h1>
           </Col>
         </Row>
-        <Row style={{ "height": "100%" }}>
-          <Col>
-          Rejestracja nowego detektywa
-            <Row style={{ "height":"80%" }}>
+        <Row style={{ "height": "90%" }}>
+          <Col >
+            <Row style={{ "height": "10%", "padding-top": "1rem" }}>
+              <Col>
+                <h1>Rejestracja nowego detektywa</h1>
+              </Col>
+              <Col><h1>Szczegóły</h1></Col>
+            </Row>
+            <Row style={{ "height": "90%" }}>
               <Col className="officeSinglePanel">
-                 <form>
-                  <p>Imię</p>
+                <form>
                   <input
                     type="text"
                     name="firstName"
                     onChange={handleChange}
                     required
-                  />
-                  <p>Nazwisko</p>
+                  /><p>Imię</p>
                   <input
                     type="text"
                     name="lastName"
                     onChange={handleChange}
                     required
-                  />
-                  <p>Login/email</p>
+                  /><p>Nazwisko</p>
                   <input
                     type="email"
                     name="login"
                     onChange={handleChange}
                     required
                   />
-                  <p>Hasło</p>
+                  <p>e-mail</p>
                   <input
                     type="text"
                     name="password"
                     onChange={handleChange}
                     required
                   />
-                  <p>Nr. telefonu</p>
+                  <p>Hasło</p>
                   <input type="text" name="phone" onChange={handleChange} />
-                  <p>Zdjęcie</p>
+                  <p>Numer telefonu</p>
                   <input type="text" name="avatar" onChange={handleChange} />
+                  <p>Zdjęcie</p>
                   <p className="text-danger"></p>
                   <input type="submit" onClick={handleClick} value="Dodaj" />
-                </form> 
+                </form>
               </Col>
               <Col className="officeSinglePanel">
-                {actualOfficer?(
-                  <Row>
-                    <Col>
-                  <Row><Col><img src={actualOfficer.avatar} width={"120px"} height={"120px"}/></Col></Row>
-                  <Row><Col>{actualOfficer.firstName}</Col></Row>
-                  <Row><Col>{actualOfficer.lastName}</Col></Row>
-                  <Row><Col>{actualOfficer.phone}</Col></Row>
-                  <Row><Col>Detective {actualOfficer.grade}</Col></Row>
-                  <Row><Col><Button onClick={()=>{handleDeleteOfficer(actualOfficer._id)}} variant='danger'>Usuń funkcjonariusza</Button></Col></Row>
+                {actualOfficer ? (
+                  <Row style={{ "height": "100%" }}>
+                    <Col >
+                      <Row  className="singleOfficerPhoto"><Col style={{height:"100%"}}><img src={actualOfficer.avatar} /></Col></Row>
+                      <Row style={{ "height": "10%" }}><Col>{actualOfficer.firstName}</Col></Row>
+                      <Row style={{ "height": "10%" }}><Col>{actualOfficer.lastName}</Col></Row>
+                      <Row style={{ "height": "10%" }}><Col>{actualOfficer.phone}</Col></Row>
+                      <Row style={{ "height": "10%" }}><Col>Detective {actualOfficer.grade}</Col></Row>
+                      <Row style={{ "height": "10%" }}><Col><Button onClick={() => { handleDeleteOfficer(actualOfficer._id) }} variant='danger'>Usuń funkcjonariusza</Button></Col></Row>
                     </Col>
                   </Row>
-                  
-                ):("")}
+
+                ) : ("")}
               </Col>
             </Row>
           </Col>
-          <Col style={{"height":"100%"}}>
-            Spis detektywów
-            <Row style={{"height":"80%" }}>
-              <Col className="officeSinglePanel" style={{"overflowY":"scroll"}}>
-                 {
+          <Col style={{ "height": "100%" }}>
+            <Row style={{ "height": "10%", "padding-top": "1rem" }}>
+              <Col><h1>Spis detektywów</h1></Col>
+            </Row>
+            <Row style={{ "height": "90%" }}>
+              <Col className="officeSinglePanel" style={{ "overflowY": "scroll" }}>
+                {
                   allOfficers?.map((value) => (
-                    <Row className="singleOfficer" onClick={()=>{actualOfficerHandler(value)}}>
-                      <Col><img src={value.avatar} width={"90px"} /></Col>
+                    <Row className="singleOfficer" onClick={() => { actualOfficerHandler(value) }}>
+                      <Col><img src={value.avatar}/></Col>
                       <Col>{value.firstName}</Col>
                       <Col>{value.lastName}</Col>
                     </Row>
                   ))
                 }
               </Col>
-
             </Row>
           </Col>
         </Row>

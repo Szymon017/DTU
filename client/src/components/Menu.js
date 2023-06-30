@@ -14,11 +14,21 @@ const Menu = () => {
     const handleClick = (site) => {
         window.location.replace(`http://localhost:3000/${site}`);
     }
+
+    const logout = () => {
+        const token = localStorage.getItem('token');
+
+        if(token){
+            localStorage.removeItem('token');
+            window.location.assign('/login');
+        }else{
+            console.log("error");
+        }
+    }
     return (
         <>
             <Container fluid>
                 {currentOfficer ? (
-
                     <Row className='HomeTopBar'>
                         <Col lg={2} xs={2} className='HomeTopBarItem'>
                             <Row>
@@ -35,13 +45,13 @@ const Menu = () => {
                         </Col>
                         <Col lg={10} xs={10} className='HomeTopBarItem'>
                             <Row className='MenuItems'>
-                                <Col className='MenuItem' onClick={() => { handleClick("home") }}>Ogłoszenia</Col>
-                                <Col className='MenuItem' onClick={() => { handleClick("cases") }}>Aktualne sprawy</Col>
-                                <Col className='MenuItem' onClick={() => { handleClick("crime") }}>Organizacje</Col>
-                                <Col className='MenuItem' onClick={() => { handleClick("persons") }}>Osoby</Col>
-                                <Col className='MenuItem' onClick={() => { handleClick("archives") }}>Archiwum</Col>
-                                <Col className='MenuItem' onClick={() => { handleClick("office") }}>Biuro</Col>
-                                <Col className="MenuItem"><Button variant='warning'>Wyloguj</Button></Col>
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("home") }}>Ogłoszenia</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("cases") }}>Aktualne sprawy</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("crime") }}>Organizacje</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("persons") }}>Osoby</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("archives") }}>Archiwum</Col>}
+                                {currentOfficer && (currentOfficer.role ==2) &&<Col className='MenuItem' onClick={() => { handleClick("office") }}>Biuro</Col>}
+                                <Col className="MenuItem"><Button variant='warning' onClick={logout}>Wyloguj</Button></Col>
                             </Row>
                         </Col>
                     </Row>

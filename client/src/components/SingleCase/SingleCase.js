@@ -176,6 +176,11 @@ const SingleCase = (props) => {
     setActualCase(props.case);
   }, [props]);
 
+  useEffect(()=>{
+    console.log("get");
+
+  },[])
+
   const changeWindow = (value) => {
     setActualCard(value);
   };
@@ -279,20 +284,13 @@ const SingleCase = (props) => {
                 )}
               </Row>
               <Row style={{ height: "100%" }}>
-                <Col
-                  style={{
-                    border: "1px solid black",
-                    "background-color": " #121621",
-                    height: "90%",
-                    "overflow-y": "scroll",
-                  }}
-                >
+                <Col className="joditCase">
                   {click ? (
                     <JoditEditor
                       ref={editor}
                       value={content}
                       config={config}
-                      onChange={(newContent) => setContent(newContent)}
+                      onBlur={(newContent) => setContent(newContent)}
                     />
                   ) : (
                     <div style={{ "wordWrap": "break-word" }} dangerouslySetInnerHTML={{ __html: content }} />

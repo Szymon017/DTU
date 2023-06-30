@@ -93,7 +93,7 @@ const MyCases = () => {
     <Container className="defaultContainer2" fluid >
       <Row style={{ height: "100%" }}>
         <Col className="caseList">
-          <Row style={{ maxHeight: "100%" }}>
+          <Row style={{ height: "100%" }}>
             <Col className="MyCasesList">
               <Button
                 variant="dark"

@@ -23,21 +23,20 @@ const Crime = () => {
             ...newCrimeOrg,
             [name]: value,
         });
-        console.log(newCrimeOrg);
     }
 
     const getCrimeOrgs = async () => {
         const result = await getAllCrimeOrgs();
-        console.log(result);
         setCrimeOrgs(result.data.results)
         result.data.results.map((key) => (
-            key.archived & (setActualOrg(key)
-            )))
+            key.archived === false ? (setActualOrg(key)
+            ):(setActualOrg())))
     }
 
     const handleClick = async (e) => {
         e.preventDefault();
         const result = await addNewCrimeOrg(newCrimeOrg)
+        
         setCrimeOrgs([...crimeOrgs, result.data.object])
         setNewCrimeOrg()
         setOrgForm(false)
@@ -48,7 +47,6 @@ const Crime = () => {
         // setCrimeOrgs(updatedCrimes)
 
         // const result = await updateCrimeOrg(data._id, { archived: true })
-        // console.log(result);
         setShowConfirm(true);
         setId(data);
     }
@@ -58,7 +56,6 @@ const Crime = () => {
             const updatedCrimes = crimeOrgs.filter(org => org._id !== id._id)
             setCrimeOrgs(updatedCrimes)
             const result = await updateCrimeOrg(id._id, { archived: true })
-            console.log(result);
         }
         setId();
         setShowConfirm(false);
