@@ -4,7 +4,7 @@ export const addNewPerson = (data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return axios.post(`http://localhost:5000/persons`, data,{
+        return axios.post(`https://detective-task-unit-sa.onrender.com:5000/persons`, data,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -24,7 +24,7 @@ export const getAllPersons = (data) => {
         }
     }
     try {
-        return axios.get(`http://localhost:5000/persons${url}`,{
+        return axios.get(`https://detective-task-unit-sa.onrender.com:5000/persons${url}`,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -38,7 +38,7 @@ export const updatePerson = (id, data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return axios.put(`http://localhost:5000/persons/${id}`, data,{
+        return axios.put(`https://detective-task-unit-sa.onrender.com:5000/persons/${id}`, data,{
             headers: {
                 authorization: `Bearer ${token}`
             }

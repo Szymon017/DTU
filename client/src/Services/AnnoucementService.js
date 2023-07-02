@@ -32,7 +32,7 @@ export const deleteAnAnnoucement = async(id) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.delete(`http://localhost:5000/annoucements/${id}`,{
+        return await axios.delete(`https://detective-task-unit-sa.onrender.com:5000/annoucements/${id}`,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -46,7 +46,7 @@ export const updateAnnoucement = async(data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.put(`http://localhost:5000/annoucements/${data._id}`,data,{
+        return await axios.put(`https://detective-task-unit-sa.onrender.com:5000/annoucements/${data._id}`,data,{
             headers: {
                 authorization: `Bearer ${token}`
             }
