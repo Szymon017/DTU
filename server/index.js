@@ -27,17 +27,12 @@ app.use((req, res, next) => {
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "/client/build")));
 
-app.use(cors({
-    credentials: true,
-    origin: function (origin, callback) {
-      // Sprawdź, czy żądanie pochodzi z dozwolonej domeny
-      if (origin === 'https://dtu-sa.onrender.com') {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    }
-  }));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://dtu-sa.onrender.com');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
   
 
 //database connection
