@@ -23,6 +23,7 @@ const Login = () => {
     const handleSubmit = async(event) => {
         event.preventDefault();
         const result = await login(officer);
+        console.log(result);
         if(result.data){
             localStorage.setItem("token", result.data.token)            
             window.location.assign('/home');
