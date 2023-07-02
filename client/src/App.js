@@ -35,9 +35,7 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-          
-            <>
-              <Route element={<RoleAccess roles={[1, 2]} />}>
+              <Route element={<RoleAccess roles={[1, 2]} auth={authenticated} />}>
                 <Route path='/' element={<Login />}></Route>
                 <Route path='/home' element={<HomePage />}></Route>
                 <Route path='/cases' element={<MyCases />}></Route>
@@ -49,23 +47,21 @@ function App() {
                 <Route path='/office' element={<Office />}>
                 </Route>
               </Route>
-            </>
-  
-          <Route path='/login' element={<Login />}></Route>
+          <Route path='/' element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
     </>
   );
 }
 
-const RoleAccess = ({ roles = [] }) => {
-  if (localStorage.getItem("token")) {
+const RoleAccess = ({ roles = [], auth }) => {
+  if (auth) {
     const officer = getCurrentOfficer();
     return !roles.length || roles.includes(officer?.role)
       ? <Outlet />
       : <Navigate to="/home" replace />;
   } else {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 }
 export default App;
