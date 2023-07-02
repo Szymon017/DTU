@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { getAllCases } from "../../Services/CasesService";
 import { getAllCrimeOrgs } from "../../Services/CrimesService";
-import JsPDF from 'jspdf';
 
 const Archives = () => {
 
@@ -16,20 +15,7 @@ const Archives = () => {
         setArchivedCases(result.data.results)
     }
 
-    const generatePDF = () => {
-
-        const doc = new JsPDF('portrait', 'pt', 'a4');
-        doc.setFontSize(22);
-        doc.setTextColor(255, 0, 0);
-        doc.text(20, 20, 'This is a title');
-
-        doc.setFontSize(16);
-        doc.setTextColor(0, 255, 0);
-        doc.text(20, 30, 'This is some normal sized text underneath.');
-        doc.html(document.querySelector('.report')).then(() => {
-            doc.save('report.pdf');
-        });
-    }
+  
     const setCrimes = async () => {
         const result = await getAllCrimeOrgs({ archived: true })
         setArchivedOrgs(result.data.results)
