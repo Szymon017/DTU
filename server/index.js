@@ -8,6 +8,8 @@ import Persons from './routes/Persons.js'
 import Crime from './routes/Crime.js'
 import Annoucement from './routes/Annoucements.js'
 import bodyParser from 'body-parser'
+import path from "path";
+
 
 dotenv.config();
 
@@ -20,6 +22,13 @@ app.use(express.json());
 app.use(cors({
     origin: ['https://detective-task-unit-sa.onrender.com/']
 }));
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/client/build/index.html"))
+);
+
 //database connection
 
 try{
