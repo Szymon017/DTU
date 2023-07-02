@@ -8,6 +8,7 @@ import Persons from './routes/Persons.js'
 import Crime from './routes/Crime.js'
 import Annoucement from './routes/Annoucements.js'
 import bodyParser from 'body-parser'
+import * as path from 'path';
 
 dotenv.config();
 
