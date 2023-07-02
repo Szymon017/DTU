@@ -4,7 +4,7 @@ export const addNewCase = async (caseData) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.post('http://localhost/cases', caseData,{
+        return await axios.post('https://dtu-sa.onrender.com/cases', caseData,{
             headers: {
                 authorization: `Bearer ${token}`
             }
