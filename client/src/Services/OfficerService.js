@@ -6,8 +6,11 @@ export const login = async (officer) => {
 
     try {
         return await axios.post('https://detective-task-unit-sa.onrender.com/officers/login', officer,{
+            withCredentials: true,
             headers: {
-                authorization: `Bearer ${token}`
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Origin': 'https://dtu-sa.onrender.com'
             }
         })
     } catch (err) {
@@ -41,8 +44,11 @@ export const getAllOfficers = async(filters) => {
     }
     try {
         return await axios.get(`https://detective-task-unit-sa.onrender.com/officers/all${url}`,{
+            withCredentials: true,
             headers: {
-                authorization: `Bearer ${token}`
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Origin': 'https://dtu-sa.onrender.com'
             }
         })
     } catch (err) {
@@ -56,8 +62,11 @@ export const addNewOfficer = async(data) => {
     console.log("DATA", data);
     try {
         return await axios.post('https://detective-task-unit-sa.onrender.com/officers',data,{
+            withCredentials: true,
             headers: {
-                authorization: `Bearer ${token}`
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Origin': 'https://dtu-sa.onrender.com'
             }
         })
     } catch (error) {
@@ -70,8 +79,11 @@ export const deleteOfficer = async(id) => {
 
     try {
         return await axios.delete(`https://detective-task-unit-sa.onrender.com/officers/${id}`,{
+            withCredentials: true,
             headers: {
-                authorization: `Bearer ${token}`
+                authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Origin': 'https://dtu-sa.onrender.com'
             }
         })
     } catch (error) {
@@ -83,8 +95,11 @@ export const authOfficer = async(token) => {
     const token2 = token
     try{
         return await axios.get(`https://detective-task-unit-sa.onrender.com/officers/authenticate`,{
+            withCredentials: true,
             headers: {
-                authorization: `Bearer ${token2}`
+                authorization: `Bearer ${token2}`,
+                'Content-Type': 'application/json',
+                'Origin': 'https://dtu-sa.onrender.com'
             }
         })
     }catch(error){
