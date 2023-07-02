@@ -18,10 +18,7 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 app.use(express.json());
-app.use(cors({
-    origin: ['https://dtu-sa.onrender.com'],
-    credentials: true
-}));
+
 //database connection
 
 try{
