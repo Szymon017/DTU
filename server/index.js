@@ -51,7 +51,7 @@ app.use('/annoucements', Annoucement)
 
 app.use(express.static('../client/build'));
 app.get("*", function (req, res) {
-    res.sendFile("../client/build/index.html");
+    res.send("../client/build/index.html");
   });
 
 
