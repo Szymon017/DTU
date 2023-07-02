@@ -18,10 +18,10 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 app.use(express.json());
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    next();
-  });
+app.use(cors({
+    origin: ['https://detective-task-unit-sa.onrender.com/'],
+    credentials: true
+}));
 //database connection
 
 try{
