@@ -15,7 +15,7 @@ export const getAllCrimeOrgs = async (data) => {
         }
     }
     try {
-        return await axios.get(`https://detective-task-unit-sa.onrender.com/crime${url}`,{
+        return await axios.get(`https://dtu-sa.onrender.com/crime${url}`,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -29,7 +29,7 @@ export const addNewCrimeOrg = async (data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.post(`https://detective-task-unit-sa.onrender.com/crime`, data,{
+        return await axios.post(`https://dtu-sa.onrender.com/crime`, data,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -43,7 +43,7 @@ export const updateCrimeOrg = async (id, data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.put(`https://detective-task-unit-sa.onrender.com/crime/${id}`, data,{
+        return await axios.put(`https://dtu-sa.onrender.com/crime/${id}`, data,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -57,7 +57,7 @@ export const archiveOrg = async(data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.put(`https://detective-task-unit-sa.onrender.com/crime/${data._id}`,data.archived,{
+        return await axios.put(`https://dtu-sa.onrender.com/crime/${data._id}`,data.archived,{
             headers: {
                 authorization: `Bearer ${token}`
             }

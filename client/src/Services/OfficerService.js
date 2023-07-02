@@ -5,7 +5,7 @@ export const login = async (officer) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.post('https://detective-task-unit-sa.onrender.com/officers/login', officer,{
+        return await axios.post('https://dtu-sa.onrender.com/officers/login', officer,{
             withCredentials: true,
             headers: {
                 authorization: `Bearer ${token}`,
@@ -43,7 +43,7 @@ export const getAllOfficers = async(filters) => {
         }
     }
     try {
-        return await axios.get(`https://detective-task-unit-sa.onrender.com/officers/all${url}`,{
+        return await axios.get(`https://dtu-sa.onrender.com/officers/all${url}`,{
             withCredentials: true,
             headers: {
                 authorization: `Bearer ${token}`,
@@ -61,7 +61,7 @@ export const addNewOfficer = async(data) => {
 
     console.log("DATA", data);
     try {
-        return await axios.post('https://detective-task-unit-sa.onrender.com/officers',data,{
+        return await axios.post('https://dtu-sa.onrender.com/officers',data,{
             withCredentials: true,
             headers: {
                 authorization: `Bearer ${token}`,
@@ -78,7 +78,7 @@ export const deleteOfficer = async(id) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.delete(`https://detective-task-unit-sa.onrender.com/officers/${id}`,{
+        return await axios.delete(`https://dtu-sa.onrender.com/officers/${id}`,{
             withCredentials: true,
             headers: {
                 authorization: `Bearer ${token}`,
@@ -94,7 +94,7 @@ export const deleteOfficer = async(id) => {
 export const authOfficer = async(token) => {
     const token2 = token
     try{
-        return await axios.get(`https://detective-task-unit-sa.onrender.com/officers/authenticate`,{
+        return await axios.get(`https://dtu-sa.onrender.com/officers/authenticate`,{
             withCredentials: true,
             headers: {
                 authorization: `Bearer ${token2}`,

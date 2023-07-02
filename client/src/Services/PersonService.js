@@ -4,7 +4,7 @@ export const addNewPerson = (data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return axios.post(`https://detective-task-unit-sa.onrender.com/persons`, data,{
+        return axios.post(`https://dtu-sa.onrender.com/persons`, data,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -24,7 +24,7 @@ export const getAllPersons = (data) => {
         }
     }
     try {
-        return axios.get(`https://detective-task-unit-sa.onrender.com/persons${url}`,{
+        return axios.get(`https://dtu-sa.onrender.com/persons${url}`,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -38,7 +38,7 @@ export const updatePerson = (id, data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return axios.put(`https://detective-task-unit-sa.onrender.com/persons/${id}`, data,{
+        return axios.put(`https://dtu-sa.onrender.com/persons/${id}`, data,{
             headers: {
                 authorization: `Bearer ${token}`
             }

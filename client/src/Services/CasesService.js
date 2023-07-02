@@ -33,7 +33,7 @@ export const getAllCases = async (data) => {
         }
     }
     try {
-        return await axios.get(`https://detective-task-unit-sa.onrender.com/cases${url}`,{
+        return await axios.get(`https://dtu-sa.onrender.com/cases${url}`,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -47,7 +47,7 @@ export const deleteCase = async (id) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.delete(`https://detective-task-unit-sa.onrender.com/cases/${id}`,{
+        return await axios.delete(`https://dtu-sa.onrender.com/cases/${id}`,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -61,7 +61,7 @@ export const editCase = async (id, data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.put(`https://detective-task-unit-sa.onrender.com/cases/${id}`,data,{
+        return await axios.put(`https://dtu-sa.onrender.com/cases/${id}`,data,{
             headers: {
                 authorization: `Bearer ${token}`
             }

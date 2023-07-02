@@ -18,7 +18,7 @@ export const addNewAnnoucement = async(data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.post(`https://detective-task-unit-sa.onrender.com/annoucements`,data,{
+        return await axios.post(`https://dtu-sa.onrender.com/annoucements`,data,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -32,7 +32,7 @@ export const deleteAnAnnoucement = async(id) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.delete(`https://detective-task-unit-sa.onrender.com/annoucements/${id}`,{
+        return await axios.delete(`https://dtu-sa.onrender.com/annoucements/${id}`,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -46,7 +46,7 @@ export const updateAnnoucement = async(data) => {
     const token = localStorage.getItem("token")
 
     try {
-        return await axios.put(`https://detective-task-unit-sa.onrender.com/annoucements/${data._id}`,data,{
+        return await axios.put(`https://dtu-sa.onrender.com/annoucements/${data._id}`,data,{
             headers: {
                 authorization: `Bearer ${token}`
             }
