@@ -50,7 +50,7 @@ function App() {
                 </Route>
               </Route>
             </>
-          ) : ""}
+          ) : <Route path='/' element={<Login />}></Route>}
           <Route path='/login' element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
