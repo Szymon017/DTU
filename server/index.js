@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 app.use(express.json());
 app.use(cors({
-    credentials: true,
-    origin: true
+    origin: ['https://detective-task-unit-sa.onrender.com/'],
+    credentials: true
 }));
 //database connection
 
