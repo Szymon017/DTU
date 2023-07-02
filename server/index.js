@@ -9,11 +9,13 @@ import Crime from './routes/Crime.js'
 import Annoucement from './routes/Annoucements.js'
 import bodyParser from 'body-parser'
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 dotenv.config();
 
 const app = express();
-const PORT = Number(process.env.PORT) ;
+const PORT = Number(process.env.PORT);
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
@@ -24,28 +26,40 @@ app.use(cors({
 }));
 //database connection
 
-try{
+try {
 
     mongoose.connect(`mongodb+srv://joahimjager:${process.env.DATABASE_PASSWORD}@dtu.itkk9jy.mongodb.net/?retryWrites=true&w=majority`)
-}catch(err){
+} catch (err) {
     console.log(err);
 }
-   
+
 //routes
 app.use(cors({
-    origin:['https://detective-task-unit-sa.onrender.com/']
+    origin: ['https://detective-task-unit-sa.onrender.com/']
 }));
 app.use('/officers', Officers)
 app.use('/cases', Cases)
 app.use('/persons', Persons)
 app.use('/crime', Crime)
 app.use('/annoucements', Annoucement)
+app.use(express.static('../client/build', {
+    extensions: ['html', 'htm', 'css'],
+    setHeaders: (res, path, stat) => {
+      if (path.endsWith('.css')) {
+        res.setHeader('Content-Type', 'text/css');
+      }
+    }
+  }));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-app.get("/", (req, res) => {
-    res.status(201).json({message: "Connected to Backend!"});
+app.get('/', function (req, res) {
+    const indexPath = path.join(__dirname, '../client/build/index.html');
+    res.sendFile(indexPath);
+ 
 });
 
-if(process.env.PORT){
+if (process.env.PORT) {
     app.listen(PORT, (err) => {
         console.log(`Server running on port ${PORT}`);
     })
