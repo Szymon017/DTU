@@ -39,6 +39,11 @@ app.use('/cases', Cases)
 app.use('/persons', Persons)
 app.use('/crime', Crime)
 app.use('/annoucements', Annoucement)
+
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+  
 if(process.env.PORT){
     app.listen(PORT, (err) => {
         console.log(`Server running on port ${PORT}`);
