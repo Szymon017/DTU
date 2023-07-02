@@ -30,7 +30,6 @@ const addCrime = async(req,res) => {
 
 const getAllCrimeOrgs = async(req,res) => {
     let query = {}
-    console.log("dzioło");
     if(req.query.name){
         query.name = req.query.name
     }

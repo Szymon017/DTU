@@ -5,11 +5,13 @@ import Col from "react-bootstrap/esm/Col";
 import Form from "react-bootstrap/esm/Form";
 import { addNewOfficer, getAllOfficers, deleteOfficer } from "../../Services/OfficerService";
 import { Button } from 'react-bootstrap';
+import ConfirmModal from "../Modal/Confirm";
 
 const Office = () => {
   const [newOfficer, setNewOfficer] = useState();
   const [allOfficers, setAllOfficers] = useState();
   const [actualOfficer, setActualOfficer] = useState();
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +29,7 @@ const Office = () => {
   }
 
   const handleDeleteOfficer = async (id) => {
-    const result = await deleteOfficer(id)
-    console.log(result);
+    setShowConfirm(true);
   }
 
   const getOfficers = async () => {
@@ -39,6 +40,38 @@ const Office = () => {
 
   const actualOfficerHandler = (officer) => {
     setActualOfficer(officer)
+  }
+
+  const handleConfirm = async (x) => {
+    if (x) {
+      const updatedOfficers = allOfficers.filter(key => key._id !== actualOfficer._id)
+      setAllOfficers(updatedOfficers)
+      const result = await deleteOfficer(actualOfficer._id)
+      setActualOfficer();
+
+    }
+    setShowConfirm(false);
+  }
+
+  const promote = async() => {
+    let actualGrade = actualOfficer.grade;
+    if(actualGrade < 4){
+      const newGrade = parseInt(actualGrade) +1;
+      const actualOfficerTemp = actualOfficer;
+      actualOfficerTemp.grade = newGrade;
+      setActualOfficer({...actualOfficerTemp})
+    }
+  }
+
+  const degrade = async() => {
+    let actualGrade = actualOfficer.grade;
+    if(actualGrade > 0){
+      const newGrade = parseInt(actualGrade) -1;
+      const actualOfficerTemp = actualOfficer;
+      actualOfficerTemp.grade = newGrade;
+      console.log(actualOfficerTemp);
+      setActualOfficer({...actualOfficerTemp})
+    }
 
   }
 
@@ -103,11 +136,12 @@ const Office = () => {
                 {actualOfficer ? (
                   <Row style={{ "height": "100%" }}>
                     <Col >
-                      <Row  className="singleOfficerPhoto"><Col style={{height:"100%"}}><img src={actualOfficer.avatar} /></Col></Row>
+                      <Row className="singleOfficerPhoto"><Col style={{ height: "100%" }}><img src={actualOfficer.avatar} /></Col></Row>
                       <Row style={{ "height": "10%" }}><Col>{actualOfficer.firstName}</Col></Row>
                       <Row style={{ "height": "10%" }}><Col>{actualOfficer.lastName}</Col></Row>
                       <Row style={{ "height": "10%" }}><Col>{actualOfficer.phone}</Col></Row>
-                      <Row style={{ "height": "10%" }}><Col>Detective {actualOfficer.grade}</Col></Row>
+                      <Row style={{ "height": "10%" }}><Col><i onClick={degrade} class="bi bi-arrow-down-circle-fill gradeDown"></i>Detective {actualOfficer.grade}<i onClick={promote} class="bi bi-arrow-up-circle-fill gradeUp"></i>
+                      </Col></Row>
                       <Row style={{ "height": "10%" }}><Col><Button onClick={() => { handleDeleteOfficer(actualOfficer._id) }} variant='danger'>Usuń funkcjonariusza</Button></Col></Row>
                     </Col>
                   </Row>
@@ -121,11 +155,11 @@ const Office = () => {
               <Col><h1>Spis detektywów</h1></Col>
             </Row>
             <Row style={{ "height": "90%" }}>
-              <Col className="officeSinglePanel" style={{ "overflowY": "scroll" }}>
+              <Col className="officeSinglePanel">
                 {
                   allOfficers?.map((value) => (
                     <Row className="singleOfficer" onClick={() => { actualOfficerHandler(value) }}>
-                      <Col><img src={value.avatar}/></Col>
+                      <Col style={{ height: "100%" }}><img src={value.avatar} /></Col>
                       <Col>{value.firstName}</Col>
                       <Col>{value.lastName}</Col>
                     </Row>
@@ -135,6 +169,8 @@ const Office = () => {
             </Row>
           </Col>
         </Row>
+        <ConfirmModal isShown={showConfirm} onConfirm={handleConfirm} />
+
 
       </Container>
     </>
