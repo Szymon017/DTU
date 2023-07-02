@@ -35,19 +35,17 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-              <Route element={<RoleAccess roles={[1, 2]} auth={authenticated} />}>
-                <Route path='/' element={<Login />}></Route>
-                <Route path='/home' element={<HomePage />}></Route>
-                <Route path='/cases' element={<MyCases />}></Route>
-                <Route path='/crime' element={<Crime />}></Route>
-                <Route path='/archives' element={<Archives />}></Route>
-                <Route path='/persons' element={<Persons />}></Route>
-              </Route>
-              <Route element={<RoleAccess roles={[2]} />}>
-                <Route path='/office' element={<Office />}>
-                </Route>
-              </Route>
           <Route path='/' element={<Login />}></Route>
+          <Route element={<RoleAccess roles={[1, 2]} auth={authenticated} />}>
+            <Route path='/home' element={<HomePage />}></Route>
+            <Route path='/cases' element={<MyCases />}></Route>
+            <Route path='/crime' element={<Crime />}></Route>
+            <Route path='/archives' element={<Archives />}></Route>
+            <Route path='/persons' element={<Persons />}></Route>
+          </Route>
+          <Route element={<RoleAccess roles={[2]} />}>
+            <Route path='/office' element={<Office />}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
