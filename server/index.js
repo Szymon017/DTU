@@ -20,7 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 app.use(express.json());
 app.use(cors({
-    origin: true
+    origin: true,
+    credentials: true
 }));
 
 const __dirname = path.resolve();
