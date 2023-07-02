@@ -16,10 +16,12 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
 
   const getAuthorization = async () => {
-    const token = localStorage.getItem("token")
-    const result = await authOfficer(token);
-    console.log(result.data.authorization);
-    setAuthenticated(result.data.authorization)
+    if(localStorage.getItem("token")){
+      const token = localStorage.getItem("token")
+      const result = await authOfficer(token);
+      console.log(result.data.authorization);
+      setAuthenticated(result.data.authorization)
+    }
   }
 
   useEffect(() => {
@@ -36,8 +38,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />}></Route>
-
-      
               <Route element={<RoleAccess roles={[1, 2]} auth={authenticated} />}>
                 <Route path='/tablica' element={<HomePage />}></Route>
                 <Route path='/sprawy' element={<MyCases />}></Route>
@@ -45,18 +45,17 @@ function App() {
                 <Route path='/archiwum' element={<Archives />}></Route>
                 <Route path='/osoby' element={<Persons />}></Route>
               </Route>
-              <Route element={<RoleAccess roles={[2]} />}>
+              <Route element={<RoleAccess roles={[2]} auth={authenticated}/>}>
                 <Route path='/biuro' element={<Office />}></Route>
               </Route>
-     
- 
         </Routes>
       </BrowserRouter>
     </>
   );
 }
 
-const RoleAccess = ({ roles = [] }) => {
+const RoleAccess = ({ roles = [], auth }) => {
+  console.log(auth);
   if (localStorage.getItem("token")) {
     const officer = getCurrentOfficer();
     return !roles.length || roles.includes(officer?.role)
