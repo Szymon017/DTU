@@ -63,7 +63,7 @@ const RoleAccess = ({ roles = [], auth }) => {
       ? <Outlet />
       : <Navigate to="/home" replace />;
   } else {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 }
 export default App;
