@@ -35,7 +35,7 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-          {authenticated ? (
+          
             <>
               <Route element={<RoleAccess roles={[1, 2]} />}>
                 <Route path='/' element={<Login />}></Route>
@@ -50,7 +50,7 @@ function App() {
                 </Route>
               </Route>
             </>
-          ) : ""}
+  
           <Route path='/login' element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
