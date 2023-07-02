@@ -29,8 +29,16 @@ app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.use(cors({
     credentials: true,
-    origin: true
-}));
+    origin: function (origin, callback) {
+      // Sprawdź, czy żądanie pochodzi z dozwolonej domeny
+      if (origin === 'https://dtu-sa.onrender.com') {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
+  
 
 //database connection
 
