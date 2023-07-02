@@ -8,6 +8,7 @@ import Persons from './routes/Persons.js'
 import Crime from './routes/Crime.js'
 import Annoucement from './routes/Annoucements.js'
 import bodyParser from 'body-parser'
+import path from "path";
 
 dotenv.config();
 
@@ -31,6 +32,13 @@ try{
 }
    
 //routes
+
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+);
 
 app.use('/officers', Officers)
 app.use('/cases', Cases)
