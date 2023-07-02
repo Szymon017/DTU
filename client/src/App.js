@@ -36,30 +36,34 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />}></Route>
-          <Route element={<RoleAccess roles={[1, 2]} auth={authenticated} />}>
-            <Route path='/home' element={<HomePage />}></Route>
-            <Route path='/cases' element={<MyCases />}></Route>
-            <Route path='/crime' element={<Crime />}></Route>
-            <Route path='/archives' element={<Archives />}></Route>
-            <Route path='/persons' element={<Persons />}></Route>
-          </Route>
-          <Route element={<RoleAccess roles={[2]} />}>
-            <Route path='/office' element={<Office />}></Route>
-          </Route>
+
+      
+              <Route element={<RoleAccess roles={[1, 2]} auth={authenticated} />}>
+                <Route path='/tablica' element={<HomePage />}></Route>
+                <Route path='/sprawy' element={<MyCases />}></Route>
+                <Route path='/organizacje' element={<Crime />}></Route>
+                <Route path='/archiwum' element={<Archives />}></Route>
+                <Route path='/osoby' element={<Persons />}></Route>
+              </Route>
+              <Route element={<RoleAccess roles={[2]} />}>
+                <Route path='/biuro' element={<Office />}></Route>
+              </Route>
+     
+ 
         </Routes>
       </BrowserRouter>
     </>
   );
 }
 
-const RoleAccess = ({ roles = [], auth }) => {
-  if (auth) {
+const RoleAccess = ({ roles = [] }) => {
+  if (localStorage.getItem("token")) {
     const officer = getCurrentOfficer();
     return !roles.length || roles.includes(officer?.role)
       ? <Outlet />
       : <Navigate to="/home" replace />;
   } else {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
 }
 export default App;

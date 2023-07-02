@@ -45,12 +45,12 @@ const Menu = () => {
                         </Col>
                         <Col lg={10} xs={10} className='HomeTopBarItem'>
                             <Row className='MenuItems'>
-                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("home") }}>Ogłoszenia</Col>}
-                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("cases") }}>Aktualne sprawy</Col>}
-                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("crime") }}>Organizacje</Col>}
-                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("persons") }}>Osoby</Col>}
-                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("archives") }}>Archiwum</Col>}
-                                {currentOfficer && (currentOfficer.role ==2) &&<Col className='MenuItem' onClick={() => { handleClick("office") }}>Biuro</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("tablica") }}>Ogłoszenia</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("sprawy") }}>Aktualne sprawy</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("organizacje") }}>Organizacje</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("osoby") }}>Osoby</Col>}
+                                {currentOfficer &&<Col className='MenuItem' onClick={() => { handleClick("archiwum") }}>Archiwum</Col>}
+                                {currentOfficer && (currentOfficer.role ==2) &&<Col className='MenuItem' onClick={() => { handleClick("biuro") }}>Biuro</Col>}
                                 <Col className="MenuItem"><Button variant='warning' onClick={logout}>Wyloguj</Button></Col>
                             </Row>
                         </Col>
