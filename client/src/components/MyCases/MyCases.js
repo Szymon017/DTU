@@ -41,7 +41,6 @@ const MyCases = () => {
       ...newCase,
       [name]: value,
     });
-    console.log(newCase);
   };
 
   const handleCaseChange = (x) => {
@@ -50,7 +49,6 @@ const MyCases = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(newCase);
     const result = await addNewCase(newCase);
     setNewCase(null);
     setCaseForm(true);

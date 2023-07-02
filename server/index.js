@@ -37,6 +37,11 @@ app.use('/cases', Cases)
 app.use('/persons', Persons)
 app.use('/crime', Crime)
 app.use('/annoucements', Annoucement)
-app.listen(PORT, (err) => {
-    console.log(`Server running on port ${PORT}`);
-})
+if(process.env.PORT){
+    app.listen(PORT, (err) => {
+        console.log(`Server running on port ${PORT}`);
+    })
+}
+
+
+module.exports = app;

@@ -25,7 +25,6 @@ const Persons = () => {
     }
 
     const handleSetDesc = () => {
-        console.log("working");
         setDesc(true);
         setCases(false);
         setEditPersonData(false);
@@ -53,13 +52,11 @@ const Persons = () => {
             ...newPerson,
             [name]: value,
         });
-        console.log(newPerson);
     }
 
     const handleSubmit = async (e) => {
         //e.preventDefault()
         const result = await addNewPerson(newPerson)
-        console.log(result);
     }
 
     const config = useMemo(() => ({
@@ -77,9 +74,7 @@ const Persons = () => {
     }
 
     const handleUpdate = async () => {
-        console.log(content);
         const result = await updatePerson(actualPerson._id, { description: content })
-        console.log(result);
     }
 
     useEffect(() => {

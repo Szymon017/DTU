@@ -17,7 +17,6 @@ const Login = () => {
             ...officer,
             [name]: value
         })
-        console.log(officer);
     }
 
     const handleSubmit = async(event) => {

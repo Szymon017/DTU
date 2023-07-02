@@ -29,7 +29,6 @@ const SingleCrime = (props) => {
     const handleShow = () => setShow(true);
 
     const handleClick = ((value) => {
-        console.log(value);
         setOption(value);
     })
 
@@ -56,7 +55,6 @@ const SingleCrime = (props) => {
 
     const getRelated = async (id) => {
         const result = await getAllCases({ orgs: id });
-        console.log(result);
         setRelated(result.data.results);
     }
 
@@ -76,7 +74,6 @@ const SingleCrime = (props) => {
             setActualOrg(temp)
 
             const result2 = await updateCrimeOrg(actualOrg._id, { members: actualOrg.members })
-            console.log(result2);
 
         }
     }
@@ -84,12 +81,10 @@ const SingleCrime = (props) => {
     const handleUpdateDesc = async (e) => {
         const result = await updateCrimeOrg(actualOrg._id, { description: content })
         actualOrg.description = content
-        console.log(result);
     }
 
     const handleChangeMember = (e) => {
         const { name, value } = e.target;
-        console.log(newMemberForm);
 
         setNewMemberForm({
             ...newMemberForm,

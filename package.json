@@ -1,0 +1,25 @@
+{
+  "name": "dtu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-server": "cd server && npm install",
+    "start-server": "cd server && npm start",
+    "install-client": "cd client && npm install",
+    "start-client":" cd client && npm start",
+    "build-client":" cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Szymon017/DTU.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Szymon017/DTU/issues"
+  },
+  "homepage": "https://github.com/Szymon017/DTU#readme"
+}
