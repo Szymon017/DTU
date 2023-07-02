@@ -19,7 +19,9 @@ function App() {
     if(localStorage.getItem("token")){
       const token = localStorage.getItem("token")
       const result = await authOfficer(token);
-      console.log(result.data.authorization);
+      if(!result.data.authorization){
+        localStorage.removeItem("token");
+      }
       setAuthenticated(result.data.authorization)
     }
   }
@@ -60,9 +62,9 @@ const RoleAccess = ({ roles = [], auth }) => {
     const officer = getCurrentOfficer();
     return !roles.length || roles.includes(officer?.role)
       ? <Outlet />
-      : <Navigate to="/home" replace />;
+      : <Navigate to="/tablica" replace />;
   } else {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 }
 export default App;

@@ -20,7 +20,7 @@ const Menu = () => {
 
         if(token){
             localStorage.removeItem('token');
-            window.location.assign('/login');
+            window.location.assign('/');
         }else{
             console.log("error");
         }
