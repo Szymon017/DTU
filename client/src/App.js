@@ -29,15 +29,17 @@ function App() {
   return (
     <>
       <header>
-        {authenticated ? (
+        {authenticated?(
+
           <Menu />
-        ) : ""}
+          ):""}
+
       </header>
       <BrowserRouter>
         <Routes>
-          {authenticated ? (
+
             <>
-              <Route element={<RoleAccess roles={[1, 2]} />}>
+              <Route element={<RoleAccess roles={[1, 2]} auth={authenticated} />}>
                 <Route path='/' element={<Login />}></Route>
                 <Route path='/home' element={<HomePage />}></Route>
                 <Route path='/cases' element={<MyCases />}></Route>
@@ -50,7 +52,7 @@ function App() {
                 </Route>
               </Route>
             </>
-          ) : <Route path='/' element={<Login />}></Route>}
+
           <Route path='/login' element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
@@ -58,8 +60,9 @@ function App() {
   );
 }
 
-const RoleAccess = ({ roles = [] }) => {
-  if (localStorage.getItem("token")) {
+const RoleAccess = ({ roles = [], auth }) => {
+  console.log(auth);
+  if (auth) {
     const officer = getCurrentOfficer();
     return !roles.length || roles.includes(officer?.role)
       ? <Outlet />
