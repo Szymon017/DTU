@@ -41,9 +41,9 @@ app.use('/persons', Persons)
 app.use('/crime', Crime)
 app.use('/annoucements', Annoucement)
 
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
+app.get("/", (req, res) => {
+    res.status(201).json({message: "Connected to Backend!"});
+});
 
 if(process.env.PORT){
     app.listen(PORT, (err) => {
