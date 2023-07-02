@@ -38,7 +38,7 @@ app.use('/persons', Persons)
 app.use('/crime', Crime)
 app.use('/annoucements', Annoucement)
 if(process.env.PORT){
-    app.listen(PORT, (err) => {
+    app.listen("https://detective-task-unit-sa.onrender.com:5000", (err) => {
         console.log(`Server running on port ${PORT}`);
     })
 }
