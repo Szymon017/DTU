@@ -11,7 +11,6 @@ const Archives = () => {
     const [viewType, setViewType] = useState();
     const setCases = async () => {
         const result = await getAllCases({ archived: true })
-        console.log(result);
         setArchivedCases(result.data.results)
     }
 
@@ -19,7 +18,6 @@ const Archives = () => {
     const setCrimes = async () => {
         const result = await getAllCrimeOrgs({ archived: true })
         setArchivedOrgs(result.data.results)
-        console.log(result);
     }
 
     const handleSetActualArchive = (element) => {

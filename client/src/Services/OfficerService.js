@@ -59,7 +59,6 @@ export const getAllOfficers = async(filters) => {
 export const addNewOfficer = async(data) => {
     const token = localStorage.getItem("token")
 
-    console.log("DATA", data);
     try {
         return await axios.post('https://dtu-sa.onrender.com/officers',data,{
             withCredentials: true,

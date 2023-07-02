@@ -54,7 +54,6 @@ const SingleCase = (props) => {
       [name]: value
     })
 
-    console.log(evidenceForm);
   }
 
   const deleteOfficer = async (id) => {
@@ -78,7 +77,6 @@ const SingleCase = (props) => {
     setActualCase(temp)
     setEvidenceForm()
     const result = await editCase(actualCase._id, temp);
-    console.log(result);
   };
 
   const handleSubmitOfficer = async () => {
@@ -94,9 +92,7 @@ const SingleCase = (props) => {
       temp.officers.push(result.data.results[0]);
       setActualCase(temp);
       const result2 = await editCase(actualCase._id, temp);
-      console.log(result2);
     } else {
-      console.log("ne ma ");
     }
   };
 
@@ -136,13 +132,10 @@ const SingleCase = (props) => {
   const handleSubmit = async () => {
     setClick(!click);
     const result = await editCase(actualCase._id, { description: content });
-    console.log(result);
   };
 
   const handleSubmitOrg = async () => {
-    console.log(evidenceForm);
     const resultOrg = await getAllCrimeOrgs(evidenceForm)
-    console.log(resultOrg);
     if (resultOrg.data.results.length < 1) {
       console.log("nie ma takiej organizacji ");
     } else {
@@ -155,10 +148,8 @@ const SingleCase = (props) => {
   }
 
   const handleSubmitPerson = async () => {
-    console.log(evidenceForm);
     const resultPerson = await getAllPersons(evidenceForm)
     if(resultPerson.data.results.length < 1 ){
-      console.log("Nie ma takiej osoby");
     }else{
       const temp = { ...actualCase };
       temp.persons.push(resultPerson.data.results[0])
@@ -177,7 +168,6 @@ const SingleCase = (props) => {
   }, [props]);
 
   useEffect(()=>{
-    console.log("get");
 
   },[])
 

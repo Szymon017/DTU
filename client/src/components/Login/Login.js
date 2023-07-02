@@ -17,16 +17,14 @@ const Login = () => {
             ...officer,
             [name]: value
         })
-        console.log(officer);
     }
 
     const handleSubmit = async(event) => {
         event.preventDefault();
         const result = await login(officer);
-        console.log(result);
         if(result.data){
             localStorage.setItem("token", result.data.token)            
-            window.location.assign('/home');
+            window.location.assign('/tablica');
         }else{
             setError({ error: result.response.data.error })
         }

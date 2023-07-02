@@ -57,7 +57,6 @@ function App() {
 }
 
 const RoleAccess = ({ roles = [], auth }) => {
-  console.log(auth);
   if (localStorage.getItem("token")) {
     const officer = getCurrentOfficer();
     return !roles.length || roles.includes(officer?.role)

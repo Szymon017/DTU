@@ -24,7 +24,6 @@ const Office = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     const result = await addNewOfficer(newOfficer);
-    console.log(result);
     setNewOfficer(null)
   }
 
@@ -34,7 +33,6 @@ const Office = () => {
 
   const getOfficers = async () => {
     const result = await getAllOfficers();
-    console.log(result);
     setAllOfficers(result.data.results)
   }
 
@@ -69,7 +67,6 @@ const Office = () => {
       const newGrade = parseInt(actualGrade) -1;
       const actualOfficerTemp = actualOfficer;
       actualOfficerTemp.grade = newGrade;
-      console.log(actualOfficerTemp);
       setActualOfficer({...actualOfficerTemp})
     }
 

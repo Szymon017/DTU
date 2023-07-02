@@ -11,7 +11,6 @@ const Related = (props) => {
     }
 
     useEffect(() => {
-        console.log(actualCase);
     }, [])
     return (
 

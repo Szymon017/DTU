@@ -28,7 +28,6 @@ const HomePage = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(newNoteForm);
 
         setNewNoteForm({
             ...newNoteForm,
@@ -38,12 +37,10 @@ const HomePage = () => {
 
     const handleConfirm = async (confirm) => {
         setShowConfirm(false);
-        console.log(actualId);
         if (confirm) {
             try {
                 const result = await deleteAnAnnoucement(actualId);
                 const updatedAnnoucements = annoucements.filter(ann => ann._id !== actualId)
-                console.log(updatedAnnoucements);
                 setAnnoucements(updatedAnnoucements);
                 setActualNote();
             } catch (error) {
@@ -69,14 +66,11 @@ const HomePage = () => {
         note.style.left = `${xPos - 200}` + 'px'
         let x = document.getElementById("pinBoard");
         x.addEventListener("mousemove", move)
-        console.log(note.style.top + " " + note.style.left);
         const ann = annoucements;
         const index = ann.findIndex(el => el._id === note.id)
-        console.log(ann[index]);
         ann[index].posY = note.style.top;
         ann[index].posX = note.style.left;
         setAnnoucements(ann);
-        console.log(annoucements);
 
         
     }
@@ -85,10 +79,8 @@ const HomePage = () => {
         const index = annoucements.findIndex(el => el._id === x)
         const posX = annoucements[index].posX.slice(0, -2)
         const posY = annoucements[index].posY.slice(0, -2)
-        console.log(posX);
         try{
             const result = await updateAnnoucement({posX: Number(posX), posY: Number(posY), _id: x});
-            console.log(result);
         }catch(err){
 
             console.log(err);
@@ -97,7 +89,6 @@ const HomePage = () => {
     }
 
     const disableMouse = (e) => {
-        console.log("Mouse disabled");
         moving = false
         let x = document.getElementById("pinBoard");
         setActualNote("")
@@ -106,7 +97,6 @@ const HomePage = () => {
 
     const enableMouse = (e) => {
         if (actualNote) {
-            console.log("Mouse enabled");
             moving = true
             move(e)
         }
@@ -115,9 +105,7 @@ const HomePage = () => {
     const handleAddNote = async () => {
         try {
             const result = await addNewAnnoucement(newNoteForm)
-            console.log(result);
             annoucements.push(result.data.results);
-            console.log(annoucements);
         } catch (error) {
             console.log(error);
         }
