@@ -24,6 +24,10 @@ app.use(cors({
     credentials: true,
     origin: true
 }));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 //database connection
 
 try {
@@ -37,27 +41,20 @@ try {
 app.use(cors({
     origin: ['https://detective-task-unit-sa.onrender.com/']
 }));
+
 app.use('/officers', Officers)
 app.use('/cases', Cases)
 app.use('/persons', Persons)
 app.use('/crime', Crime)
 app.use('/annoucements', Annoucement)
-app.use(express.static('../client/build', {
-    extensions: ['html', 'htm', 'css'],
-    setHeaders: (res, path, stat) => {
-      if (path.endsWith('.css')) {
-        res.setHeader('Content-Type', 'text/css');
-      }
-    }
-  }));
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
-app.get('/', function (req, res) {
-    const indexPath = path.join(__dirname, '../client/build/index.html');
-    res.sendFile(indexPath);
- 
-});
+
+app.use(express.static('../client/build'));
+app.get("*", function (req, res) {
+    res.sendFile(path.resolve(__dirname , "../client/build", "index.html"));
+  });
+
+
 
 if (process.env.PORT) {
     app.listen(PORT, (err) => {
